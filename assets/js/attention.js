@@ -2,7 +2,7 @@
    attention.js — the interactive attention model (attention.html).
    Two agents update by conditionalization; an attention policy decides
    which evidence they update on. Model: Joselu Cabrera Guillermo,
-   "The Bayesian and the Immunologist" and "Not changing your mind" (2025).
+   "The Bayesian and the Immunologist" and the talk "Selective Conditionalization: Belief Perseverance from a Bayesian Framework" (RatioLog, 2025).
    ========================================================= */
 (function () {
   "use strict";

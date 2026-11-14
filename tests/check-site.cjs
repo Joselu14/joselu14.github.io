@@ -87,7 +87,7 @@ const server = http.createServer((req, res) => {
 
     // Philosopher's toolkit
     await page.goto(base + '/toolkit.html'); await page.locator('[data-set-lang=en]').click();
-    assert.equal(await page.locator('.project').count(), 6);
+    assert.equal(await page.locator('.project').count(), 7);
     const more = page.locator('#ai-formal-philosophy details.more');
     assert.equal(await more.evaluate(d => d.open), false);
     await more.locator('summary').click();
@@ -95,7 +95,7 @@ const server = http.createServer((req, res) => {
     assert.equal(await page.locator('a[href="index.html#triangle"]:visible').count(), 1);
     assert.equal(fs.existsSync(path.join(root, 'assets/docs')), false);
     await page.goto(base + '/teaching.html'); await page.waitForURL(/toolkit\.html$/);
-    checks.push('Toolkit: six entries, "More about this project" opens, triangle link, old address redirects, no slides');
+    checks.push('Toolkit: seven entries, "More about this project" opens, triangle link, old address redirects, no slides');
 
     // The attention model
     await page.goto(base + '/research.html'); await page.locator('[data-set-lang=en]').click();
