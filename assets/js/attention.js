@@ -44,17 +44,31 @@
     return q;
   }
 
-  /* ---------- Attention policies ---------- */
-  // Dogmatic: Sal(E) = 1 − (1/c) Σ max(cr(Pi) − cr(Pi | E), 0), with core set C = {P}.
-  // Enthusiastic: Sal(E) = |R(S, E)|, R = (cr(E|S) − cr(E|¬S)) / (cr(E|S) + cr(E|¬S)).
+  /* ---------- Attention policies ----------
+     Both policies work on the agent's core beliefs C (what the agent cares about):
+     P, and/or the agent's side on S (S if cr(S) ≥ 0.5, not-S otherwise).
+     Dogmatic:     Sal(E) = 1 − (1/c) Σ max(cr(Pi) − cr(Pi | E), 0)   (average drop in core credences)
+     Enthusiastic: Sal(E) = (1/c) Σ |R(Pi, E)|,  R(X, E) = (cr(E|X) − cr(E|¬X)) / (cr(E|X) + cr(E|¬X)) */
+  function neg(l) { return l.charAt(0) === "-" ? l.slice(1) : "-" + l; }
+  function core(p) {
+    var C = [];
+    if (state.core.P) C.push("P");
+    if (state.core.S) C.push(pr(p, ["S"]) >= 0.5 ? "S" : "-S");
+    return C;
+  }
+  function relevance(p, x, e) {
+    var a = cond(p, [e], [x]), b = cond(p, [e], [neg(x)]);
+    if (!(a + b > 0)) return 0;
+    return (a - b) / (a + b);
+  }
   function salience(p, e, policy) {
     if (!(pr(p, [e]) > 1e-12)) return 0;
-    if (policy === "dogmatic") {
-      return 1 - Math.max(pr(p, ["P"]) - cond(p, ["P"], [e]), 0);
-    }
-    var a = cond(p, [e], ["S"]), b = cond(p, [e], ["-S"]);
-    if (!(a + b > 0)) return 0;
-    return Math.abs((a - b) / (a + b));
+    var C = core(p), sum = 0;
+    if (!C.length) return policy === "dogmatic" ? 1 : 0;
+    C.forEach(function (x) {
+      sum += policy === "dogmatic" ? Math.max(pr(p, [x]) - cond(p, [x], [e]), 0) : Math.abs(relevance(p, x, e));
+    });
+    return policy === "dogmatic" ? 1 - sum / C.length : sum / C.length;
   }
   // E is attended iff Sal(E) ≥ Sal(E′) for every E′ on the table and Sal(E) > a.
   function attend(p, ev, policy, a) {
@@ -69,24 +83,24 @@
   var TABLES = {"clash-dogmatic":{"A":[0.044975,0.000249,0.00831,0.001918,0.006418,0.009358,0.014297,0.004475,0.104145,0.018631,0.00257,0.019202,0.014862,0.701362,0.004423,0.044805],"B":[0.023604,0.056536,0.0,0.0,0.022396,0.047464,0.0,0.0,0.058503,0.003257,0.637893,0.070207,0.055506,0.002734,0.002098,0.019802]},"clash-enthusiastic":{"A":[0.013591,0.000159,0.123909,0.027341,0.003736,0.020014,0.008764,0.002486,0.01112,0.00013,0.10138,0.02237,0.070976,0.380274,0.166524,0.047226],"B":[0.003736,0.008764,0.020014,0.002486,0.013591,0.123909,0.000159,0.027341,0.070976,0.166524,0.380274,0.047226,0.01112,0.10138,0.00013,0.02237]},"same-beliefs":{"A":[0.007718,0.001577,0.011335,0.002316,0.040137,0.020568,0.01081,0.00554,0.045066,0.03564,0.025882,0.020468,0.234369,0.464926,0.024684,0.048966],"B":[0.003138,0.000699,0.020075,0.004469,0.013826,0.007338,0.032962,0.017494,0.055554,0.04561,0.011233,0.009223,0.244768,0.479068,0.018444,0.0361]}};
   var SCEN = {
     "clash-dogmatic": {
-      policy: "dogmatic", a: 0.65, l: 0.75, ev: { H: true, V: true },
-      agents: [{ name: "Ana", f: true, key: "A" }, { name: "Joseph", f: false, key: "B" }]
+      policy: "dogmatic", a: 0.65, l: 0.75, ev: { H: true, V: true }, core: { P: true, S: false },
+      agents: [{ name: "Ana", key: "A" }, { name: "Joseph", key: "B" }]
     },
     "clash-enthusiastic": {
-      policy: "enthusiastic", a: 0.30, l: 0.75, ev: { H: true, V: true },
-      agents: [{ name: "Ana", f: true, key: "A" }, { name: "Joseph", f: false, key: "B" }]
+      policy: "enthusiastic", a: 0.30, l: 0.75, ev: { H: true, V: true }, core: { P: false, S: true },
+      agents: [{ name: "Ana", key: "A" }, { name: "Joseph", key: "B" }]
     },
     "same-beliefs": {
-      policy: "dogmatic", a: 0.65, l: 0.75, ev: { H: true, V: false },
-      agents: [{ name: "Ana", f: true, key: "A" }, { name: "Lucía", f: true, key: "B" }]
+      policy: "dogmatic", a: 0.65, l: 0.75, ev: { H: true, V: false }, core: { P: true, S: false },
+      agents: [{ name: "Ana", key: "A" }, { name: "Dai", key: "B" }]
     }
   };
   var state = {};
   function load(name) {
     var s = SCEN[name];
     state = {
-      scen: name, policy: s.policy, a: s.a, l: s.l, ev: { H: s.ev.H, V: s.ev.V },
-      agents: s.agents.map(function (g) { return { name: g.name, f: g.f, p: TABLES[name][g.key].slice() }; })
+      scen: name, policy: s.policy, a: s.a, l: s.l, ev: { H: s.ev.H, V: s.ev.V }, core: { P: s.core.P, S: s.core.S },
+      agents: s.agents.map(function (g) { return { name: g.name, p: TABLES[name][g.key].slice() }; })
     };
   }
 
@@ -143,6 +157,7 @@
     $("#att-a").value = state.a; $("#att-l").value = state.l;
     $("#att-a-out").textContent = fmt(state.a); $("#att-l-out").textContent = fmt(state.l);
     $("#att-ev-H").checked = state.ev.H; $("#att-ev-V").checked = state.ev.V;
+    $("#att-core-P").checked = state.core.P; $("#att-core-S").checked = state.core.S;
     state.agents.forEach(function (ag, i) {
       var col = $$(".att-agent")[i];
       SLIDERS.forEach(function (sl) {
@@ -174,8 +189,8 @@
     var ign = ev.filter(function (e) { return res.att.indexOf(e) < 0; });
     if (!res.att.length) {
       return ev.length === 1
-        ? t(n + " ignores " + ev[0] + ": its salience is not above a.", n + " ignora " + ev[0] + ": su prominencia no supera a.")
-        : t(n + " ignores both H and V: neither has salience above a.", n + " ignora tanto H como V: ninguna tiene prominencia mayor que a.");
+        ? t(n + " ignores " + ev[0] + ": its salience is not above a.", n + " ignora " + ev[0] + ": su saliencia no supera a.")
+        : t(n + " ignores both H and V: neither has salience above a.", n + " ignora tanto H como V: ninguna tiene saliencia mayor que a.");
     }
     var s = t(n + " attends to ", n + " atiende a ") + list(res.att);
     if (ign.length) s += t(" and ignores ", " e ignora ") + list(ign);
@@ -184,9 +199,9 @@
     return s;
   }
 
-  function moveVerdict(x, y, names, fem) {
+  function moveVerdict(x, y) {
     var mA = Math.abs(y[0] - x[0]) > 5e-4, mB = Math.abs(y[1] - x[1]) > 5e-4;
-    if (!mA && !mB) return t("neither changes their mind", (fem ? "ninguna cambia de opinión" : "ninguno cambia de opinión"));
+    if (!mA && !mB) return "none";
     var lean = x.map(function (v) { return v > 0.5 + 1e-9 ? 1 : v < 0.5 - 1e-9 ? -1 : 0; });
     if (lean[0] * lean[1] === -1 && (y[0] - x[0]) * lean[0] > 5e-4 && (y[1] - x[1]) * lean[1] > 5e-4) return "polarize";
     var g0 = Math.abs(x[0] - x[1]), g1 = Math.abs(y[0] - y[1]);
@@ -198,7 +213,7 @@
 
 
   // What happened to their full beliefs about S (Lockean threshold l)
-  function beliefClause(x, y, names, fem, would) {
+  function beliefClause(x, y, names, would) {
     var b0 = x.map(function (v) { return status(v, state.l); }), b1 = y.map(function (v) { return status(v, state.l); });
     var now = names[0] + " " + statusText(b1[0]) + t(" and ", " y ") + names[1] + " " + statusText(b1[1]);
     if (would) now = names[0] + " " + statusText(b1[0], true) + t(" and ", " y ") + names[1] + " " + statusText(b1[1], true);
@@ -206,10 +221,10 @@
       return would ? t(" They would no longer take the same attitude to S: ", " Ya no tendrían la misma actitud hacia S: ") + now + "."
                    : t(" Before, they took the same attitude to S; now ", " Antes tenían la misma actitud hacia S; ahora ") + now + ".";
     if (b0[0] !== b0[1] && b1[0] === b1[1])
-      return would ? t(" They would take the same attitude to S: both ", " Tendrían la misma actitud hacia S: ") + (es() ? (fem ? "ambas " : "ambos ") : "") + statusText(b1[0], true, true) + "."
-                   : t(" Now they take the same attitude to S: both ", " Ahora tienen la misma actitud hacia S: ") + (es() ? (fem ? "ambas " : "ambos ") : "") + statusText(b1[0], false, true) + ".";
+      return would ? t(" They would take the same attitude to S: both ", " Tendrían la misma actitud hacia S: " + names[0] + " y " + names[1] + " ") + statusText(b1[0], true, true) + "."
+                   : t(" Now they take the same attitude to S: both ", " Ahora tienen la misma actitud hacia S: " + names[0] + " y " + names[1] + " ") + statusText(b1[0], false, true) + ".";
     if (b0[0] === b0[1] && b1[0] === b1[1] && b1[0] !== b0[0])
-      return " " + (would ? t("Both ", fem ? "Ambas " : "Ambos ") : t("Both now ", fem ? "Ahora ambas " : "Ahora ambos ")) +
+      return " " + (would ? t("Both ", names[0] + " y " + names[1] + " ") : t("Both now ", "Ahora " + names[0] + " y " + names[1] + " ")) +
         statusText(b1[0], would, true) + (b1[0] === 0 ? t(" about S", " sobre S") : "") + ".";
     if (b1[0] * b1[1] === -1 && b0[0] * b0[1] !== -1)
       return (would ? t(" They would end up with opposite beliefs: ", " Terminarían con creencias opuestas: ") : t(" Now they hold opposite beliefs: ", " Ahora tienen creencias opuestas: ")) + now + ".";
@@ -219,7 +234,6 @@
   function render(active) {
     syncControls(active);
     var ev = ["H", "V"].filter(function (e) { return state.ev[e]; });
-    var fem = state.agents.every(function (g) { return g.f; });
     var res = state.agents.map(function (ag) { return attend(ag.p, ev, state.policy, state.a); });
     var allp = state.agents.map(function (ag) { return ev.length ? (conditionalize(ag.p, ev) || ag.p) : ag.p; });
     var x = state.agents.map(function (ag) { return pr(ag.p, ["S"]); });
@@ -239,7 +253,7 @@
         var above = ev.filter(function (o) { return o !== e && r.sal[o] > r.sal[e] + 1e-9; });
         var why = on ? t("attends", "atiende")
           : r.sal[e] - state.a <= 1e-9 ? t("ignores: not above a", "ignora: no supera a")
-          : t("ignores: " + above.join(", ") + " is more salient", "ignora: " + above.join(", ") + " es más prominente");
+          : t("ignores: " + above.join(", ") + " is more salient", "ignora: " + above.join(", ") + " es más saliente");
         sh += '<div class="att-sal' + (on ? " on" : "") + '"><span class="att-ev">' + e + '</span>' +
               '<span class="att-bar" aria-hidden="true"><span style="width:' + (r.sal[e] * 100).toFixed(1) + '%"></span></span>' +
               '<span class="att-num">' + fmt(r.sal[e]) + '</span><span class="att-why">' + why + '</span></div>';
@@ -283,35 +297,34 @@
 
     // verdict
     var nA = state.agents[0].name, nB = state.agents[1].name;
-    var v = moveVerdict(x, y, [nA, nB], fem);
-    var plural = fem ? t("they", "ellas") : t("they", "ellos");
+    var v = moveVerdict(x, y);
     var V1 = {
-      polarize: t("They polarize: each moves further in the direction they already leaned.", "Se polarizan: " + (fem ? "cada una" : "cada uno") + " se mueve más hacia donde ya se inclinaba."),
+      polarize: t("They polarize: each moves further in the direction they already leaned.", "Se polarizan: cada quien se mueve más hacia donde ya se inclinaba."),
       closer: t("They move closer together.", "Se acercan."),
       agree: t("They end up with the same credence in S.", "Terminan con el mismo grado de creencia en S."),
       apart: t("They move further apart.", "Se alejan."),
-      same: t("The gap between them stays the same.", "La distancia entre " + plural + " no cambia.")
+      same: t("The gap between them stays the same.", "La distancia entre sus grados de creencia no cambia.")
     };
     var s = V1[v] || t("Neither " + nA + " nor " + nB + " changes their mind.", "Ni " + nA + " ni " + nB + " cambian de opinión.");
-    s += beliefClause(x, y, [nA, nB], fem, false);
+    s += beliefClause(x, y, [nA, nB], false);
     $("#att-verdict").textContent = s;
 
     var sameAsAll = res.every(function (r) { return r.att.length === ev.length && r.updated; });
     var s2 = "";
     if (!ev.length) s2 = "";
-    else if (sameAsAll) s2 = t("Both attended to all the evidence on the table.", "Ambos atendieron a toda la evidencia sobre la mesa.");
+    else if (sameAsAll) s2 = t("Both attended to all the evidence on the table.", nA + " y " + nB + " atendieron a toda la evidencia sobre la mesa.");
     else {
-      var w = moveVerdict(x, z, [nA, nB], fem);
+      var w = moveVerdict(x, z);
       var V2 = {
         polarize: t("they would polarize", "se polarizarían"),
         closer: t("they would move closer together", "se acercarían"),
         agree: t("they would end up with the same credence", "terminarían con el mismo grado de creencia"),
         apart: t("they would move further apart", "se alejarían"),
-        same: t("the gap between them would stay the same", "la distancia entre " + plural + " no cambiaría")
+        same: t("the gap between them would stay the same", "la distancia entre sus grados de creencia no cambiaría")
       };
       s2 = t("Had they attended to all the evidence on the table, ", "Si hubieran atendido a toda la evidencia sobre la mesa, ") +
         nA + t(" would be at ", " quedaría en ") + fmt(z[0]) + t(" and ", " y ") + nB + t(" at ", " en ") + fmt(z[1]) + ": " +
-        (V2[w] || t("neither would change their mind", "ninguno cambiaría de opinión")) + "." + beliefClause(x, z, [nA, nB], fem, true);
+        (V2[w] || t("neither would change their mind", "ni " + nA + " ni " + nB + " cambiarían de opinión")) + "." + beliefClause(x, z, [nA, nB], true);
     }
     $("#att-all").textContent = s2;
   }
@@ -328,6 +341,13 @@
   $("#att-l").addEventListener("input", function () { state.l = parseFloat(this.value); render(); });
   ["H", "V"].forEach(function (e) {
     $("#att-ev-" + e).addEventListener("change", function () { state.ev[e] = this.checked; render(); });
+  });
+  ["P", "S"].forEach(function (k) {
+    $("#att-core-" + k).addEventListener("change", function () {
+      state.core[k] = this.checked;
+      if (!state.core.P && !state.core.S) { state.core[k === "P" ? "S" : "P"] = true; }   // keep at least one core belief
+      render();
+    });
   });
   $("#att-reset").addEventListener("click", function () { load(state.scen); render(); });
   new MutationObserver(function () { render(); }).observe(root, { attributes: true, attributeFilter: ["data-lang"] });

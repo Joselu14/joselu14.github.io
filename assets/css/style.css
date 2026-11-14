@@ -350,6 +350,7 @@ main .readings li { padding-left: 1.4em; text-indent: -1.4em; margin: 0 0 0.3em;
 :root[data-theme="dark"] .att { --zone: color-mix(in srgb, var(--indigo) 18%, transparent); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .att { --zone: color-mix(in srgb, var(--indigo) 18%, transparent); } }
 .att-label { font-style: italic; color: var(--ink-2); margin: 0 0 6px; text-align: left; }
+.att-sub { margin-top: 14px; }
 .att-controls { display: grid; grid-template-columns: 1fr; gap: 22px 56px; }
 @media (min-width: 860px) { .att-controls { grid-template-columns: 1fr 1fr; } }
 .att-ctl { border-top: 1px solid var(--rule); padding-top: 12px; min-width: 0; }
