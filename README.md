@@ -11,6 +11,8 @@ Plain HTML + CSS + a little JavaScript: no build step, no frameworks. GitHub Pag
 | `research.html` | Research areas (one historical plate each), work in progress, talks |
 | `toolkit.html` | Philosopher’s toolkit: tools for formal philosophy, resources for PhD applicants, courses and reading groups |
 | `teaching.html` | Old address; redirects to `toolkit.html` |
+| `groups/`, `courses/` | One page per reading group or course (e.g. `groups/filosofia-de-los-delirios.html`), with its PDFs in a folder of the same name |
+| `templates/course-or-group.html` | Blank page for a new course or reading group (not indexed by search engines) |
 | `visual.html` | Visual work: photography and posters, with filters and a lightbox |
 | `cv.html` | CV with Print / save PDF action |
 | `credits.html` | Author, date, source and licence of every image |
@@ -49,6 +51,13 @@ Search the files for `todo` to find them all.
 
 **Adding a photo or poster.** See the instructions in the comment at the top of the gallery in `visual.html`.
 Export images at about 1600 px on the long side (JPG, quality ~80) so the site stays fast.
+
+**A new course or reading group.**
+1. Copy `templates/course-or-group.html` to `courses/NAME.html` or `groups/NAME.html` (lowercase, hyphens, no accents).
+2. Replace everything highlighted in yellow and delete the sections you don't need. Titles of readings stay in their original language.
+3. Delete the line `<meta name="robots" content="noindex">` in the `<head>`, and change the `canonical` and `og:url` addresses to the new page.
+4. Make the syllabus and handouts with the LaTeX templates (`silabo` and `separata`), and put the PDFs in a folder named like the page (`groups/NAME/`).
+5. In `toolkit.html`, under *Courses and reading groups*, copy the entry for *Filosofía de los delirios* and link it to the new page. Add the page to `sitemap.xml`.
 
 **Image policy.** Images on the pages are either historical images in the public domain (or CC0), each credited
 to its original creator in `credits.html`, or your own (photos, posters, portrait). If you add any other kind of

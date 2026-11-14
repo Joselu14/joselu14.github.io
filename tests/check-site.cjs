@@ -34,7 +34,7 @@ const server = http.createServer((req, res) => {
       if (route.request().resourceType() !== 'document') external.push(u);
       return route.abort();
     });
-    const pages = ['index.html', 'research.html', 'toolkit.html', 'visual.html', 'cv.html', 'credits.html', '404.html'];
+    const pages = ['index.html', 'research.html', 'toolkit.html', 'groups/filosofia-de-los-delirios.html', 'templates/course-or-group.html', 'visual.html', 'cv.html', 'credits.html', '404.html'];
     let combos = 0;
     for (const file of pages) {
       await page.goto(base + '/' + file); await page.waitForLoadState('load');
@@ -43,7 +43,7 @@ const server = http.createServer((req, res) => {
         .filter(v => v && !/^(https?:|mailto:|#|data:)/.test(v)));
       for (const ref of refs) {
         const p = ref.split('#')[0].split('?')[0].replace(/^\//, '');
-        if (p && !fs.existsSync(path.join(root, p))) broken.push(file + ': ' + ref);
+        if (p && !fs.existsSync(path.join(root, path.dirname(file), p))) broken.push(file + ': ' + ref);
       }
       for (const width of [320, 390, 768, 1280]) {
         await page.setViewportSize({ width, height: 1000 });
@@ -87,7 +87,7 @@ const server = http.createServer((req, res) => {
 
     // Philosopher's toolkit
     await page.goto(base + '/toolkit.html'); await page.locator('[data-set-lang=en]').click();
-    assert.equal(await page.locator('.project').count(), 4);
+    assert.equal(await page.locator('.project').count(), 5);
     const more = page.locator('#ai-formal-philosophy details.more');
     assert.equal(await more.evaluate(d => d.open), false);
     await more.locator('summary').click();
@@ -95,7 +95,22 @@ const server = http.createServer((req, res) => {
     assert.equal(await page.locator('a[href="index.html#triangle"]:visible').count(), 1);
     assert.equal(fs.existsSync(path.join(root, 'assets/docs')), false);
     await page.goto(base + '/teaching.html'); await page.waitForURL(/toolkit\.html$/);
-    checks.push('Toolkit: four entries, "More about this project" opens, triangle link, old address redirects, no slides');
+    checks.push('Toolkit: five entries, "More about this project" opens, triangle link, old address redirects, no slides');
+
+    // A reading-group page and the blank template
+    await page.goto(base + '/toolkit.html'); await page.locator('[data-set-lang=en]').click();
+    await page.locator('a[href="groups/filosofia-de-los-delirios.html"]').click(); await page.waitForURL(/filosofia-de-los-delirios\.html$/);
+    assert.equal(await page.locator('.weeks > .week').count(), 10);
+    assert.equal(await page.locator('.readings li').count(), 21);
+    assert.equal(await page.locator('.nav a[aria-current="page"]').getAttribute('href'), '../toolkit.html');
+    for (const pdf of ['silabo.pdf', 'bienvenida.pdf']) assert(fs.existsSync(path.join(root, 'groups/filosofia-de-los-delirios', pdf)));
+    await page.locator('[data-set-lang=es]').click();
+    assert.equal(await page.locator('.week-n span:visible').first().textContent(), 'Semana 1');
+    await page.screenshot({ path: path.join(shots, 'group-1280.png'), fullPage: true });
+    await page.goto(base + '/templates/course-or-group.html');
+    assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex');
+    assert(!fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8').includes('templates/'));
+    checks.push('Reading group: linked from the toolkit, 10 weeks, 21 readings, PDFs present; template is noindex and outside the sitemap');
 
     // Random plate on the 404 page
     await page.goto(base + '/no-such-page'); await page.locator('[data-set-lang=en]').click();

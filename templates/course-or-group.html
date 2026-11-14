@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-title-en="Course or group (template) — Joselu Cabrera Guillermo" data-title-es="Curso o grupo (plantilla) — Joselu Cabrera Guillermo">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Course or group (template) — Joselu Cabrera Guillermo</title>
+  <meta name="description" content="Template for a course or reading-group page.">
+  <meta name="robots" content="noindex">
+  <meta name="author" content="Joselu Cabrera Guillermo">
+  <!-- Link previews (WhatsApp, Slack, social media) and search engines -->
+  <link rel="canonical" href="https://joselu14.github.io/templates/course-or-group.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Joselu Cabrera Guillermo">
+  <meta property="og:title" content="Course or group (template) — Joselu Cabrera Guillermo">
+  <meta property="og:description" content="Template for a course or reading-group page.">
+  <meta property="og:url" content="https://joselu14.github.io/templates/course-or-group.html">
+  <meta property="og:image" content="https://joselu14.github.io/assets/img/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Joselu Cabrera Guillermo, PhD student in Philosophy at Duke University, beside an arithmetic triangle drawn in type">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="es_PE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#e9ebe6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#141826" media="(prefers-color-scheme: dark)">
+  <!-- /Link previews -->
+  <!-- Set language and theme before the page paints (remembers the visitor's choice). -->
+  <script>
+    (function () {
+      var d = document.documentElement, l, t;
+      try { l = localStorage.getItem("lang"); t = localStorage.getItem("theme"); } catch (e) {}
+      if (!l) l = ((navigator.languages && navigator.languages[0]) || navigator.language || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+      d.setAttribute("data-lang", l); d.lang = l;
+      if (t) d.setAttribute("data-theme", t);
+    })();
+  </script>
+  <link rel="preload" href="../assets/fonts/alegreya-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/fonts.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip" href="#main"><span lang="en">Skip to content</span><span lang="es">Ir al contenido</span></a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">Joselu Cabrera Guillermo</a>
+      <nav class="nav" aria-label="Main / Principal">
+        <a href="../index.html"><span lang="en">About</span><span lang="es">Inicio</span></a>
+        <a href="../research.html"><span lang="en">Research</span><span lang="es">In&shy;ves&shy;ti&shy;ga&shy;ción</span></a>
+        <a href="../toolkit.html" aria-current="page"><span lang="en">Philosopher’s toolkit</span><span lang="es">Herramientas</span></a>
+        <a href="../visual.html"><span lang="en">Visual work</span><span lang="es">Obra visual</span></a>
+        <a href="../cv.html">CV</a>
+      </nav>
+      <div class="tools">
+        <div class="seg" role="group" aria-label="Language / Idioma">
+          <button type="button" data-set-lang="en" aria-pressed="true">English</button>
+          <button type="button" data-set-lang="es" aria-pressed="false">Español</button>
+        </div>
+        <button type="button" class="icon-btn" id="theme-toggle" aria-label="Switch light or dark mode"
+                data-label-en="Switch light or dark mode" data-label-es="Cambiar a modo claro u oscuro"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="7.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 2.75a7.25 7.25 0 0 1 0 14.5z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- TEMPLATE for a course or reading-group page. Copy this file to courses/<name>.html or groups/<name>.html,
+         replace everything highlighted in yellow (class="todo"), delete what you don't need, remove the
+         "noindex" line in <head>, and add an entry for it in toolkit.html#courses.
+         Every text exists twice: lang="en" and lang="es". Titles of readings stay in their original language. -->
+    <header class="wrap page-head">
+      <div class="split">
+        <div>
+          <p class="crumb"><a href="../toolkit.html#courses"><span lang="en">Philosopher’s toolkit</span><span lang="es">Herramientas</span></a></p>
+          <h1><span class="todo">Course or group title</span></h1>
+          <p lang="en"><span class="todo">One paragraph: what the course or group is about and what it is for.</span></p><p lang="es"><span class="todo">Un párrafo: de qué trata el curso o grupo y para qué es.</span></p>
+          <dl class="facts">
+            <div><dt><span lang="en">Kind</span><span lang="es">Tipo</span></dt><dd><span lang="en"><span class="todo">Course / Reading group / Study group</span></span><span lang="es"><span class="todo">Curso / Grupo de lectura / Grupo de estudio</span></span></dd></div>
+            <div><dt><span lang="en">Organized by</span><span lang="es">Organiza</span></dt><dd><span lang="en"><span class="todo">Joselu Cabrera Guillermo, with …</span></span><span lang="es"><span class="todo">Joselu Cabrera Guillermo, con …</span></span></dd></div>
+            <div><dt><span lang="en">When</span><span lang="es">Cuándo</span></dt><dd><span lang="en"><span class="todo">Day and time; dates</span></span><span lang="es"><span class="todo">Día y hora; fechas</span></span></dd></div>
+            <div><dt><span lang="en">Where</span><span lang="es">Dónde</span></dt><dd><span lang="en"><span class="todo">Room, or online</span></span><span lang="es"><span class="todo">Aula, o virtual</span></span></dd></div>
+            <div><dt><span lang="en">Reading</span><span lang="es">Lectura</span></dt><dd><span lang="en"><span class="todo">About N pages a week</span></span><span lang="es"><span class="todo">Unas N páginas por semana</span></span></dd></div>
+            <div><dt><span lang="en">Status</span><span lang="es">Estado</span></dt><dd><span lang="en"><span class="todo">Open to new members / Running / Finished</span></span><span lang="es"><span class="todo">Abierto a nuevos miembros / En curso / Finalizado</span></span></dd></div>
+          </dl>
+        </div>
+        <!-- Optional: the group's poster (your own design) or a public-domain plate, credited. -->
+      </div>
+    </header>
+
+    <section class="wrap" id="how">
+      <h2><span lang="en">How it works</span><span lang="es">Dinámica</span></h2>
+      <p class="measure" lang="en"><span class="todo">How sessions run: how often, how long, who leads, what leaders prepare.</span></p><p class="measure" lang="es"><span class="todo">Cómo funcionan las sesiones: frecuencia, duración, quién las lidera y qué preparan.</span></p>
+    </section>
+
+    <section class="wrap" id="rules">
+      <h2><span lang="en">Rules of the game</span><span lang="es">Reglas de juego</span></h2>
+      <dl class="rules">
+          <div><dt><span lang="en">Punctuality</span><span lang="es">Puntualidad</span></dt><dd><span lang="en">Arrive on time so sessions can start early.</span><span lang="es">Llegar puntuales para iniciar temprano nuestras sesiones.</span></dd></div>
+          <div><dt><span lang="en">Commitment</span><span lang="es">Compromiso</span></dt><dd><span lang="en">Keep the commitments of your role, whether active participant or listener.</span><span lang="es">Cumplir con los compromisos asociados a su rol de oyente libre o participante activx.</span></dd></div>
+          <div><dt><span lang="en">Maximal charity</span><span lang="es">Máxima caridad</span></dt><dd><span lang="en">Give others’ words the best possible interpretation, and be ready to explain any idea, theory or case that is not common ground.</span><span lang="es">Estar dispuestos a hacer la mejor interpretación posible de las palabras de lxs demás y a explicar cualquier idea, teoría o caso que no sea <em>common ground</em>.</span></dd></div>
+          <div><dt><span lang="en">Clarity</span><span lang="es">Claridad</span></dt><dd><span lang="en">Make your contributions clear enough not to get in the way of mutual understanding.</span><span lang="es">Hacer todo lo posible para que las participaciones propias sean suficientemente claras y no dificulten el entendimiento mutuo.</span></dd></div>
+          <div><dt><span lang="en">Hand or finger</span><span lang="es">Distinción mano/dedo</span></dt><dd><span lang="en">Raise a <strong>hand</strong> to change the thread of the conversation; raise a <strong>finger</strong> to follow up on the current one. Fingers go first.</span><span lang="es">Levantar la <strong>mano</strong> es una participación que cambia el hilo de la conversación; levantar un <strong>dedo</strong>, un <em>follow-up</em> al hilo vigente. Primero se agotan los dedos.</span></dd></div>
+          <div><dt><span lang="en">Examples</span><span lang="es">Ejemplificación</span></dt><dd><span lang="en">Illustrate your ideas with examples, real or hypothetical; it is almost compulsory.</span><span lang="es">Ilustrar las ideas propias con ejemplos, reales o hipotéticos: es casi obligatorio.</span></dd></div>
+          <div><dt><span lang="en">Back it up</span><span lang="es">Respaldo</span></dt><dd><span lang="en">Disagreement is welcome, always with a reason or evidence, even if only an intuition.</span><span lang="es">El desacuerdo es bienvenido, siempre respaldado con alguna razón o evidencia, aunque sea una intuición.</span></dd></div>
+      </dl>
+    </section>
+
+    <section class="wrap" id="schedule">
+      <h2><span lang="en">Schedule</span><span lang="es">Cronograma</span></h2>
+      <ol class="weeks">
+        <!-- Copy one <li class="week"> per session. -->
+        <li class="week" id="week-1">
+          <span class="week-n"><span lang="en">Week 1</span><span lang="es">Semana 1</span></span>
+          <h3><span class="todo">Session title</span></h3>
+          <p lang="en"><span class="todo">What we discuss, and who leads the session.</span></p><p lang="es"><span class="todo">Qué discutimos y quién lidera la sesión.</span></p>
+          <ol class="readings">
+            <li><span class="todo">Author (Year).</span> <a href="#"><em>Title of the reading</em></a>.</li>
+          </ol>
+        </li>
+      </ol>
+    </section>
+
+    <section class="wrap" id="materials">
+      <h2><span lang="en">Materials</span><span lang="es">Materiales</span></h2>
+      <!-- PDFs made with the LaTeX templates (sylabo / separata). Put them in a folder named like this page. -->
+      <ul class="entries">
+        <li><span class="when"><span lang="en">Syllabus</span><span lang="es">Sílabo</span></span><span><a href="#"><span class="todo">Syllabus (PDF)</span></a></span></li>
+      </ul>
+    </section>
+
+    <section class="wrap" id="join">
+      <h2><span lang="en">How to join</span><span lang="es">Cómo unirse</span></h2>
+      <p class="measure" lang="en"><span class="todo">Who can join and how; write to joselu.cabreraguillermo@duke.edu.</span></p><p class="measure" lang="es"><span class="todo">Quién puede unirse y cómo; escribir a joselu.cabreraguillermo@duke.edu.</span></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span><span class="who">Joselu Cabrera Guillermo</span><br><span lang="en">De&shy;part&shy;ment of Phi&shy;los&shy;o&shy;phy, Duke Uni&shy;ver&shy;si&shy;ty</span><span lang="es">De&shy;par&shy;ta&shy;men&shy;to de Fi&shy;lo&shy;so&shy;fía, Duke Uni&shy;ver&shy;si&shy;ty</span></span>
+      <span><span lang="en">Historical images are in the public domain and credited to their creators.</span><span lang="es">Las imágenes históricas son de dominio público y se acreditan a sus autores.</span><br>
+        <a href="../credits.html"><span lang="en">Image credits</span><span lang="es">Créditos de imágenes</span></a></span>
+      <span>&copy; <span class="year">2026</span><br><a href="https://github.com/Joselu14">GitHub</a></span>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
