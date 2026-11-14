@@ -34,6 +34,10 @@ Dark mode is a night version (`#141826`). The Visual work page keeps its own dar
 
 Uppercase monospaced labels and eyebrows above headings, "01 /" numbering, "·" separators, ↗ and → in links, pill buttons, interest chips, coloured card borders, the four-colour band under the header, and the collapsed experiment box. Plate numbers ("Pl. II.") stay because numbering plates is a real book convention and they link to the credits.
 
+## Contents lists
+
+The long pages (Research, the attention model, course and group pages) open with a short *Contents* / *Índice* list, set like an old book's contents page: an italic title in IM Fell, plain entries in Alegreya, and on Research a dotted leader after each area. Sub-entries are run in on one indented line (the attention model's subsections, the week numbers of a schedule). No sticky sidebar and no highlighting of the current section. Links jump without smooth scrolling, because lazy-loaded plates would shift the page mid-scroll.
+
 ## Moved
 
 The random plate (one of ten on each visit) now lives on the 404 page, as Joselu chose.

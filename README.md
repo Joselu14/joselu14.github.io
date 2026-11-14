@@ -51,12 +51,16 @@ For short bits inside a sentence use `<span lang="en">…</span><span lang="es">
 **Placeholders.** Anything highlighted in yellow (`class="todo"`) still needs real content.
 Search the files for `todo` to find them all.
 
+**Contents lists.** Research, the attention model and the course and group pages open with a *Contents* list (`<nav class="toc">`).
+Each entry links to a section's `id`, so when you add, rename or remove a section, change its entry too. `tests/check-site.cjs` fails if a link has no section to land on.
+
 **Adding a photo or poster.** See the instructions in the comment at the top of the gallery in `visual.html`.
 Export images at about 1600 px on the long side (JPG, quality ~80) so the site stays fast.
 
 **A new course or reading group.**
 1. Copy `templates/course-or-group.html` to `courses/NAME.html` or `groups/NAME.html` (lowercase, hyphens, no accents).
 2. Replace everything highlighted in yellow and delete the sections you don't need. Titles of readings stay in their original language.
+   Keep the *Contents* list under the facts in step with the sections: one entry per section you keep, and one number per week (`#week-2`, `#week-3`…).
 3. Delete the line `<meta name="robots" content="noindex">` in the `<head>`, and change the `canonical` and `og:url` addresses to the new page.
 4. Make the syllabus and handouts with the LaTeX templates in `templates/latex/`, and put the PDFs in a folder named like the page (`groups/NAME/`). If the documents are in only one language, say so on the page in the other one.
 5. In `toolkit.html`, under *Courses and reading groups*, copy the entry for *Filosofía de los delirios* and link it to the new page. Add the page to `sitemap.xml`.

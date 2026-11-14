@@ -35,7 +35,7 @@ const server = http.createServer((req, res) => {
       return route.abort();
     });
     const pages = ['index.html', 'research.html', 'attention.html', 'toolkit.html', 'groups/filosofia-de-los-delirios.html', 'templates/course-or-group.html', 'visual.html', 'cv.html', 'credits.html', '404.html'];
-    let combos = 0;
+    let combos = 0, tocs = 0;
     for (const file of pages) {
       await page.goto(base + '/' + file); await page.waitForLoadState('load');
       const refs = await page.evaluate(() => Array.from(document.querySelectorAll('[src],link[href],a[href]'))
@@ -45,6 +45,17 @@ const server = http.createServer((req, res) => {
         const p = ref.split('#')[0].split('?')[0].replace(/^\//, '');
         if (p && !fs.existsSync(path.join(root, path.dirname(file), p))) broken.push(file + ': ' + ref);
       }
+      // Section links (the contents lists, and links like research.html#talks) must land on an id
+      const frags = await page.evaluate(() => Array.from(document.querySelectorAll('a[href*="#"]'))
+        .map(a => a.getAttribute('href')).filter(h => !/^(https?:|mailto:)/.test(h) && h !== '#'));
+      for (const h of frags) {
+        const [p, id] = h.split('#');
+        const target = p ? path.join(root, path.dirname(file), p) : path.join(root, file);
+        if (!/\.html$/.test(target) || !fs.existsSync(target)) continue;
+        const html = fs.readFileSync(target, 'utf8');  // on Visual work, #photo and #poster pick a filter
+        if (!html.includes('id="' + id + '"') && !html.includes('data-filter="' + id + '"')) broken.push(file + ': ' + h + ' (no such section)');
+      }
+      tocs += await page.locator('nav.toc a').count();
       for (const width of [320, 390, 768, 1280]) {
         await page.setViewportSize({ width, height: 1000 });
         for (const lang of ['en', 'es']) {
@@ -59,7 +70,8 @@ const server = http.createServer((req, res) => {
       }
     }
     checks.push(combos + ' page/width/language/theme combinations: no horizontal overflow');
-    assert.deepEqual(broken, [], 'Broken local references'); checks.push('All local pages and assets exist');
+    assert.deepEqual(broken, [], 'Broken local references: ' + broken.join(' | ')); checks.push('All local pages and assets exist');
+    assert(tocs >= 38, 'Contents lists: ' + tocs); checks.push(tocs + ' contents links, each landing on a section');
     assert.deepEqual(external, [], 'Requests to other sites: ' + external.join(', ')); checks.push('No requests to other sites (fonts are self-hosted)');
 
     // The arithmetic triangle

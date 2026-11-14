@@ -1,8 +1,9 @@
 {
-  "date": "2026-11-14T17:40:33.149Z",
+  "date": "2026-11-14T18:11:00.203Z",
   "checks": [
     "160 page/width/language/theme combinations: no horizontal overflow",
     "All local pages and assets exist",
+    "38 contents links, each landing on a section",
     "No requests to other sites (fonts are self-hosted)",
     "Triangle: path, C(n, h), rule of succession, Spanish status text, 12-row cap, start over",
     "Toolkit: seven entries, \"More about this project\" opens, triangle link, old address redirects, no slides",

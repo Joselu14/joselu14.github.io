@@ -305,6 +305,34 @@ details.more[open] summary { margin-bottom: 8px; }
 .talk { font-weight: 500; }
 .todo { background: var(--tint-ochre); color: #3b2a10; padding: 0 4px; }
 
+/* ---------- Contents lists on long pages (Research, the attention model, course and group pages) ----------
+   Set like the contents page of an old book: an italic title, plain entries, and on Research
+   a dotted leader after each area. Sub-entries are run in on one line. */
+:where(main [id]) { scroll-margin-top: 18px; }
+.toc { margin: 30px 0 0; max-width: 30em; }
+.toc-title { font: italic 400 1.3rem / 1.2 var(--head); color: var(--ink); margin: 0 0 6px; }
+.toc ol { list-style: none; padding: 0; margin: 0; }
+main .toc li { text-align: left; -webkit-hyphens: manual; hyphens: manual; }
+.toc > ol > li { padding: 3px 0; }
+.toc > ol > li.toc-gap { margin-top: 12px; }
+.toc a { color: var(--link); text-decoration: none; }
+.toc > ol > li > a { display: flex; align-items: baseline; }
+.toc-lead { flex: 1 1 1.5em; min-width: 1.5em; margin: 0 0 0 0.45em; border-bottom: 2px dotted var(--faint); transform: translateY(-0.28em); }
+.toc .toc-sub { margin: 1px 0 2px 1em; font-size: 0.92em; line-height: 1.45; }
+.toc .toc-sub li { display: inline; }
+.toc .toc-sub li:not(:last-child)::after { content: ";"; color: var(--ink-2); margin-right: 0.3em; }
+.toc .toc-weeks { display: flex; align-items: baseline; }
+.toc .toc-weeks ol { text-wrap: balance; }
+.toc .toc-weeks li:not(:last-child)::after { content: none; }
+.toc .toc-weeks a { display: inline-block; min-width: 1.5em; padding: 2px 0; text-align: center; }
+.toc-sub-label { color: var(--ink-2); font-style: italic; margin-right: 0.35em; }
+@media (hover: hover) and (pointer: fine) {
+  .toc a:hover { color: var(--link-hover); }
+  .toc a:hover .toc-t, .toc .toc-sub a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
+}
+@media (pointer: coarse) { .toc > ol > li { padding: 5px 0; } .toc .toc-weeks a { padding: 6px 0; } }
+@media print { .toc { display: none; } }
+
 /* ---------- Course and reading-group pages (groups/, courses/, templates/course-or-group.html) ---------- */
 .crumb { margin: 0 0 10px; font-style: italic; font-size: 0.98em; }
 .crumb a { color: var(--ink-2); }
