@@ -397,7 +397,6 @@ main .readings li { padding-left: 1.4em; text-indent: -1.4em; margin: 0 0 0.3em;
   .att-row-name { grid-area: name; } .att-row-num { grid-area: num; } .att-track { grid-area: track; }
   .att-axis { grid-template-columns: minmax(0, 1fr); }
   .att-axis > span:not(.att-zones) { display: none; }
-  .att-how math[display="block"] { font-size: 1em; }
 }
 
 /* The two agents */
@@ -436,8 +435,11 @@ main .readings li { padding-left: 1.4em; text-indent: -1.4em; margin: 0 0 0.3em;
 
 /* How the model works */
 .att-how h3 { margin: 1.6em 0 0.4em; }
-.att-how math { font-family: "STIX Two Math", "Cambria Math", math; }
-.att-how math[display="block"] { display: block; margin: 12px 0 18px; font-size: 1.12em; overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 4px 0; }
+/* Formulas: set like a LaTeX equation environment, in Latin Modern Math */
+math { font-family: "Latin Modern Math Subset", "Latin Modern Math", "STIX Two Math", "Cambria Math", math; font-size: 1.08em; }
+math[display="block"] { display: block math; margin: 14px 0 20px; font-size: 1.22em; overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 4px 0; text-align: center; }
+.att-how math[display="block"] { max-width: var(--measure); }
+@media (max-width: 620px) { math[display="block"] { font-size: 1.06em; } }
 
 /* ---------- 9. Visual work: the darkroom ---------- */
 body.darkroom {

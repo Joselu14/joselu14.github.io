@@ -84,15 +84,15 @@
   var SCEN = {
     "clash-dogmatic": {
       policy: "dogmatic", a: 0.65, l: 0.75, ev: { H: true, V: true }, core: { P: true, S: false },
-      agents: [{ name: "Ana", key: "A" }, { name: "Joseph", key: "B" }]
+      agents: [{ name: "Anaí", key: "A" }, { name: "Dai", key: "B" }]
     },
     "clash-enthusiastic": {
       policy: "enthusiastic", a: 0.30, l: 0.75, ev: { H: true, V: true }, core: { P: false, S: true },
-      agents: [{ name: "Ana", key: "A" }, { name: "Joseph", key: "B" }]
+      agents: [{ name: "Anaí", key: "A" }, { name: "Dai", key: "B" }]
     },
     "same-beliefs": {
       policy: "dogmatic", a: 0.65, l: 0.75, ev: { H: true, V: false }, core: { P: true, S: false },
-      agents: [{ name: "Ana", key: "A" }, { name: "Dai", key: "B" }]
+      agents: [{ name: "Anaí", key: "A" }, { name: "Claudio", key: "B" }]
     }
   };
   var state = {};

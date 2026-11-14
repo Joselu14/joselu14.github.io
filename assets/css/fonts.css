@@ -1,4 +1,5 @@
-/* Self-hosted fonts (no requests to Google). All three families are under the SIL Open Font License 1.1.
+/* Self-hosted fonts (no requests to Google). IM Fell, Alegreya and Courier Prime are under the SIL Open Font License 1.1;
+   the formulas on attention.html use a subset of Latin Modern Math (GUST Font License; see ../fonts/README-latin-modern-math-subset.txt).
    IM Fell types: digitized by Igino Marini from the 17th-century types Bishop John Fell left to Oxford.
    Alegreya: Juan Pablo del Peral, Huerta Tipográfica (Argentina).
    Courier Prime: Alan Dague-Greene, for Quote-Unquote Apps. Used only inside the ASCII figure. */
@@ -35,3 +36,8 @@
   src: url("../fonts/courier-prime-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Courier Prime"; font-style: normal; font-weight: 700; font-display: swap;
   src: url("../fonts/courier-prime-latin-700-normal.woff2") format("woff2"); }
+
+/* Formulas (attention.html): a subset of Latin Modern Math, the OpenType math companion of TeX's Latin Modern,
+   by B. Jackowski, P. Strzelczyk and P. Pianowski (GUST e-foundry). Downloaded only by pages with formulas. */
+@font-face { font-family: "Latin Modern Math Subset"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/latin-modern-math-subset.woff2") format("woff2"); }

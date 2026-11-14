@@ -106,7 +106,7 @@ const server = http.createServer((req, res) => {
     assert.match(await page.locator('#att-verdict').textContent(), /^They polarize/);
     await page.locator('[data-scen=clash-enthusiastic]').click();
     assert.deepEqual(await nums(), ['0.70 → 0.90', '0.30 → 0.10']);
-    assert.match(await page.locator('#att-all').textContent(), /0\.50 and Joseph at 0\.50/);
+    assert.match(await page.locator('#att-all').textContent(), /Anaí would be at 0\.50 and Dai at 0\.50/);
     await page.locator('[data-scen=same-beliefs]').click();
     assert.deepEqual(await nums(), ['0.85 → 0.60', '0.85 → 0.85']);
     await page.locator('.att-agent').nth(1).locator('summary').first().click();

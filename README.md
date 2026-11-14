@@ -19,7 +19,8 @@ Plain HTML + CSS + a little JavaScript: no build step, no frameworks. GitHub Pag
 | `credits.html` | Author, date, source and licence of every image |
 | `404.html` | "Page not found" page with one of the ten plates drawn at random (GitHub Pages uses it automatically) |
 | `assets/css/style.css` | All the styling. Colours and typefaces are the tokens at the top |
-| `assets/css/fonts.css`, `assets/fonts/` | The three typefaces, served from the site itself (no Google Fonts), with their OFL licences |
+| `assets/css/fonts.css`, `assets/fonts/` | The typefaces, served from the site itself (no Google Fonts): IM Fell, Alegreya and Courier Prime (OFL), and a subset of Latin Modern Math for the formulas on `attention.html` (GUST Font License; see `README-latin-modern-math-subset.txt`) |
+| `attention.html`, `assets/js/attention.js` | The interactive attention model (two agents, dogmatic and enthusiastic attention policies) |
 | `assets/js/main.js` | Language, theme, the arithmetic triangle, the random plate (404) and the gallery |
 | `assets/img/plates/` | The public-domain images (list in `sources.txt`) |
 | `assets/img/gallery/` | Your photos (`photos/`) and posters (`posters/`) |
