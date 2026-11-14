@@ -461,6 +461,59 @@ main .readings li { padding-left: 1.4em; text-indent: -1.4em; margin: 0 0 0.3em;
 .att-table td:nth-child(n+5) { text-align: right; }
 .att-table tr.out td { color: var(--faint); text-decoration: line-through; }
 
+/* ---------- Normal science and revolutions (kuhn.html) ----------
+   The grid is the memorable thing; the controls borrow the attention model's look. */
+.kuhn { padding-top: clamp(16px, 3vw, 32px); }
+.kuhn-stage { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px;
+  grid-template-areas: "start" "grid" "status" "run" "chart" "params"; }
+.kuhn-start { grid-area: start; } .kuhn-grid-wrap { grid-area: grid; } .kuhn-status { grid-area: status; }
+.kuhn-run { grid-area: run; } .kuhn-chart-wrap { grid-area: chart; } .kuhn-params { grid-area: params; }
+@media (min-width: 900px) {
+  .kuhn-stage { grid-template-columns: minmax(0, 470px) minmax(0, 1fr); gap: 20px 56px;
+    grid-template-areas: "grid start" "grid status" "grid run" "chart chart" "params params"; grid-template-rows: auto auto 1fr auto auto; }
+  .kuhn-params { max-width: 46em; }
+}
+.kuhn-ctl { border-top: 1px solid var(--rule); padding-top: 12px; min-width: 0; }
+.kuhn .filters { margin: 0 0 4px; gap: 0 22px; }
+.kuhn-grid-wrap { min-width: 0; width: 100%; max-width: 520px; align-self: start; }
+.kuhn-grid { display: block; width: 100%; aspect-ratio: 1; background: var(--paper-2); }
+.kuhn-status { min-width: 0; }
+.kuhn-status-head { font: 400 1.5rem / 1.2 var(--head); margin: 0 0 6px; text-align: left; }
+main .kuhn-status-body { color: var(--ink-2); margin: 0; max-width: var(--measure); min-height: 4.7em; text-align: left; -webkit-hyphens: manual; hyphens: manual; }
+@media (max-width: 620px) { main .kuhn-status-body { min-height: 6.2em; } }
+.kuhn-buttons { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 22px; margin: 0 0 10px; }
+.kuhn-play { min-width: 8.5em; text-align: center; }
+.kuhn .again { background: none; border: 0; padding: 6px 0; cursor: pointer; color: var(--ink-2); font-size: 1em;
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; -webkit-tap-highlight-color: transparent; }
+@media (hover: hover) and (pointer: fine) { .kuhn .again:hover { color: var(--link-hover); } }
+@media (pointer: coarse) { .kuhn .again { min-height: 44px; } }
+.kuhn .att-slider { grid-template-columns: 12.5em minmax(0, 1fr) 2.8em; }
+.kuhn-year.att-slider { grid-template-columns: 4em minmax(0, 1fr) 2.8em; }
+.kuhn-speed { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 18px; margin-top: 6px; }
+.kuhn-speed .att-label { margin: 0; }
+.kuhn-seed-row { grid-column: 2 / 4; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; }
+.kuhn-seed input { font: inherit; font-variant-numeric: lining-nums tabular-nums; width: 8em; padding: 5px 8px;
+  color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 0; }
+.kuhn-seed input:focus-visible { outline: 2px solid var(--carmine); outline-offset: 1px; }
+.kuhn-params .att-note { margin-top: 10px; }
+@media (max-width: 560px) {
+  .kuhn .att-slider:not(.kuhn-year) { grid-template-columns: minmax(0, 1fr) 2.8em; gap: 0 12px; margin: 8px 0; }
+  .kuhn .att-slider:not(.kuhn-year) label { grid-column: 1 / -1; }
+  .kuhn-seed-row { grid-column: 1 / -1; }
+}
+.kuhn-chart-wrap { margin: 0; min-width: 0; border-top: 1.5px solid var(--ink); padding-top: 14px; }
+.kuhn-chart { display: block; width: 100%; height: 300px; cursor: pointer; touch-action: pan-y; }
+.kuhn-chart-wrap figcaption { margin-top: 10px; font-size: 0.9em; color: var(--ink-2); text-align: left; }
+.kuhn-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 22px; }
+.kuhn-li { display: inline-flex; align-items: center; gap: 8px; }
+.kuhn-sw { display: inline-block; width: 22px; height: 12px; flex: none; }
+.sw-pre { background: var(--paper-2); box-shadow: inset 0 0 0 1px var(--rule); }
+.sw-normal { background: linear-gradient(90deg, #2d3f8f 0 50%, #c9962c 50% 100%); }
+.sw-crisis { background: repeating-linear-gradient(-45deg, var(--ink-2) 0 1px, transparent 1px 5px); box-shadow: inset 0 0 0 1px var(--rule); }
+.sw-rev { width: 2px; height: 16px; background: var(--carmine); margin: 0 10px; }
+.kuhn-hint { display: block; margin-top: 6px; font-style: italic; }
+@media print { .kuhn-stage { display: none; } }
+
 /* How the model works */
 .att-how h3 { margin: 1.6em 0 0.4em; }
 /* Formulas: set like a LaTeX equation environment, in Latin Modern Math */

@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-title-en="Normal science and revolutions — Joselu Cabrera Guillermo" data-title-es="Ciencia normal y revoluciones — Joselu Cabrera Guillermo">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Normal science and revolutions — Joselu Cabrera Guillermo</title>
+  <meta name="description" content="An interactive agent-based model of Kuhn’s Structure of Scientific Revolutions by Joselu Cabrera Guillermo: 900 scientists on a grid choose theories, and paradigms form, fall into crisis and give way to new ones.">
+  <meta name="author" content="Joselu Cabrera Guillermo">
+  <!-- Link previews (WhatsApp, Slack, social media) and search engines -->
+  <link rel="canonical" href="https://joselu14.github.io/kuhn.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Joselu Cabrera Guillermo">
+  <meta property="og:title" content="Normal science and revolutions — Joselu Cabrera Guillermo">
+  <meta property="og:description" content="An interactive agent-based model of Kuhn’s Structure of Scientific Revolutions by Joselu Cabrera Guillermo: 900 scientists on a grid choose theories, and paradigms form, fall into crisis and give way to new ones.">
+  <meta property="og:url" content="https://joselu14.github.io/kuhn.html">
+  <meta property="og:image" content="https://joselu14.github.io/assets/img/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Joselu Cabrera Guillermo, PhD student in Philosophy at Duke University, beside an arithmetic triangle drawn in type">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="es_PE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#e9ebe6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#141826" media="(prefers-color-scheme: dark)">
+  <!-- /Link previews -->
+  <!-- Set language and theme before the page paints (remembers the visitor's choice). -->
+  <script>
+    (function () {
+      var d = document.documentElement, l, t;
+      try { l = localStorage.getItem("lang"); t = localStorage.getItem("theme"); } catch (e) {}
+      if (!l) l = ((navigator.languages && navigator.languages[0]) || navigator.language || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+      d.setAttribute("data-lang", l); d.lang = l;
+      if (t) d.setAttribute("data-theme", t);
+    })();
+  </script>
+  <link rel="preload" href="assets/fonts/alegreya-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip" href="#main"><span lang="en">Skip to content</span><span lang="es">Ir al contenido</span></a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">Joselu Cabrera Guillermo</a>
+      <nav class="nav" aria-label="Main / Principal">
+        <a href="index.html"><span lang="en">About</span><span lang="es">Inicio</span></a>
+        <a href="research.html" aria-current="page"><span lang="en">Research</span><span lang="es">Investigación</span></a>
+        <a href="toolkit.html"><span lang="en">Philosopher’s toolkit</span><span lang="es">Herramientas</span></a>
+        <a href="visual.html"><span lang="en">Visual work</span><span lang="es">Obra visual</span></a>
+        <a href="cv.html">CV</a>
+      </nav>
+      <div class="tools">
+        <div class="seg" role="group" aria-label="Language / Idioma">
+          <button type="button" data-set-lang="en" aria-pressed="true">English</button>
+          <button type="button" data-set-lang="es" aria-pressed="false">Español</button>
+        </div>
+        <button type="button" class="icon-btn" id="theme-toggle" aria-label="Switch light or dark mode"
+                data-label-en="Switch light or dark mode" data-label-es="Cambiar a modo claro u oscuro"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="7.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 2.75a7.25 7.25 0 0 1 0 14.5z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="wrap page-head">
+      <p class="crumb"><a href="research.html#methods"><span lang="en">Research</span><span lang="es">Investigación</span></a></p>
+      <h1><span lang="en">Normal science and revolutions</span><span lang="es">Ciencia normal y revoluciones</span></h1>
+      <p lang="en">A community of 900 scientists lives on a grid. Every year each of them publishes one paper within some theory, chosen by looking at the scientists around them. Agreement pays, but the more a theory has been worked on, the less is left to find in it. Press play and watch paradigms form, fall into crisis and give way to new ones.</p><p lang="es">Una comunidad científica de 900 integrantes vive en una grilla. Cada año, cada integrante publica un artículo dentro de alguna teoría, que elige mirando a quienes tiene alrededor. El acuerdo rinde frutos, pero cuanto más se ha trabajado una teoría, menos queda por descubrir en ella. Pulsa reproducir y mira cómo los paradigmas se forman, entran en crisis y dan paso a otros nuevos.</p>
+      <nav class="toc" aria-labelledby="toc-title">
+        <p class="toc-title" id="toc-title"><span lang="en">Contents</span><span lang="es">Índice</span></p>
+        <ol>
+          <li><a href="#kuhn"><span class="toc-t"><span lang="en">The model</span><span lang="es">El modelo</span></span></a></li>
+          <li><a href="#how"><span class="toc-t"><span lang="en">How the model works</span><span lang="es">Cómo funciona el modelo</span></span></a>
+            <ol class="toc-sub">
+              <li><a href="#scientists"><span lang="en">Scientists and theories</span><span lang="es">La comunidad y sus teorías</span></a></li>
+              <li><a href="#faith"><span lang="en">Faith</span><span lang="es">Fe</span></a></li>
+              <li><a href="#choice"><span lang="en">Choosing a theory</span><span lang="es">Elegir una teoría</span></a></li>
+              <li><a href="#phases"><span lang="en">Paradigms, crises and revolutions</span><span lang="es">Paradigmas, crisis y revoluciones</span></a></li>
+              <li><a href="#values"><span lang="en">The starts and the values</span><span lang="es">Los puntos de partida y los valores</span></a></li>
+            </ol></li>
+          <li><a href="#sources"><span class="toc-t"><span lang="en">Sources</span><span lang="es">Fuentes</span></span></a></li>
+        </ol>
+      </nav>
+    </header>
+
+    <section class="wrap kuhn" id="kuhn" aria-label="Interactive model / Modelo interactivo">
+      <noscript><p class="measure"><span lang="en">The model needs JavaScript to run.</span><span lang="es">El modelo necesita JavaScript para funcionar.</span></p></noscript>
+      <div class="kuhn-stage">
+        <div class="kuhn-ctl kuhn-start">
+          <p class="att-label"><span lang="en">Start from</span><span lang="es">Punto de partida</span></p>
+          <div class="filters" role="group" aria-label="Start / Punto de partida">
+            <button type="button" data-start="hom" aria-pressed="true"><span lang="en">One theory</span><span lang="es">Una teoría</span></button>
+            <button type="button" data-start="bif" aria-pressed="false"><span lang="en">Two theories</span><span lang="es">Dos teorías</span></button>
+            <button type="button" data-start="het" aria-pressed="false"><span lang="en">Many theories</span><span lang="es">Muchas teorías</span></button>
+          </div>
+          <p class="att-note" data-start-note="hom" lang="en">Everyone begins in the same theory, so the run starts in normal science.</p><p class="att-note" data-start-note="hom" lang="es">Toda la comunidad empieza en la misma teoría, así que la corrida arranca en ciencia normal.</p>
+          <p class="att-note" data-start-note="bif" hidden lang="en">The community begins split in two: the top half of the grid holds one theory and the bottom half another.</p><p class="att-note" data-start-note="bif" hidden lang="es">La comunidad empieza dividida en dos: la mitad de arriba de la grilla sostiene una teoría y la de abajo, otra.</p>
+          <p class="att-note" data-start-note="het" hidden lang="en">Each scientist begins in a theory drawn at random, so about 550 theories compete, as in a field before any paradigm.</p><p class="att-note" data-start-note="het" hidden lang="es">Cada integrante empieza en una teoría elegida al azar, así que compiten unas 550 teorías, como en un campo antes de cualquier paradigma.</p>
+        </div>
+
+        <div class="kuhn-grid-wrap">
+          <canvas id="kuhn-grid" class="kuhn-grid" role="img" aria-label="Grid of 900 scientists, coloured by the theory each one publishes in / Grilla de 900 integrantes, cada casilla del color de la teoría en que publica" data-label-en="Grid of 900 scientists, coloured by the theory each one publishes in" data-label-es="Grilla de 900 integrantes, cada casilla del color de la teoría en que publica"></canvas>
+        </div>
+
+        <div class="kuhn-status" id="kuhn-status" role="status" aria-live="polite">
+          <p class="kuhn-status-head" id="kuhn-status-head"></p>
+          <p class="kuhn-status-body" id="kuhn-status-body"></p>
+        </div>
+
+        <div class="kuhn-ctl kuhn-run">
+          <div class="kuhn-buttons">
+            <button type="button" class="btn kuhn-play" id="kuhn-play" aria-pressed="false"><span data-when="paused"><span lang="en">Play</span><span lang="es">Reproducir</span></span><span data-when="playing" hidden><span lang="en">Pause</span><span lang="es">Pausa</span></span></button>
+            <button type="button" class="again" id="kuhn-step"><span lang="en">One year</span><span lang="es">Un año</span></button>
+            <button type="button" class="again" id="kuhn-zero"><span lang="en">Back to year 0</span><span lang="es">Volver al año 0</span></button>
+          </div>
+          <div class="att-slider kuhn-year">
+            <label for="kuhn-year"><span lang="en">Year</span><span lang="es">Año</span></label>
+            <input type="range" id="kuhn-year" min="0" max="300" step="1" value="0">
+            <output id="kuhn-year-out" for="kuhn-year">0</output>
+          </div>
+          <div class="kuhn-speed">
+            <span class="att-label"><span lang="en">Speed</span><span lang="es">Velocidad</span></span>
+            <div class="filters" role="group" aria-label="Speed / Velocidad">
+              <button type="button" data-speed="slow" aria-pressed="false"><span lang="en">Slow</span><span lang="es">Lenta</span></button>
+              <button type="button" data-speed="normal" aria-pressed="true"><span lang="en">Normal</span><span lang="es">Normal</span></button>
+              <button type="button" data-speed="fast" aria-pressed="false"><span lang="en">Fast</span><span lang="es">Rápida</span></button>
+            </div>
+          </div>
+        </div>
+
+        <figure class="kuhn-chart-wrap">
+          <canvas id="kuhn-chart" class="kuhn-chart" role="img" aria-label="History of the run: phases, each theory's share of the community and the number of theories, year by year / Historia de la corrida: fases, proporción de cada teoría y número de teorías, año por año" data-label-en="History of the run: phases, each theory's share of the community and the number of theories, year by year" data-label-es="Historia de la corrida: fases, proporción de cada teoría y número de teorías, año por año"></canvas>
+          <figcaption>
+            <span class="kuhn-legend">
+              <span class="kuhn-li"><span class="kuhn-sw sw-pre"></span><span lang="en">Pre-paradigm</span><span lang="es">Preparadigma</span></span>
+              <span class="kuhn-li"><span class="kuhn-sw sw-normal"></span><span lang="en">Normal science, in the paradigm’s colour</span><span lang="es">Ciencia normal, del color del paradigma</span></span>
+              <span class="kuhn-li"><span class="kuhn-sw sw-crisis"></span><span lang="en">Crisis</span><span lang="es">Crisis</span></span>
+              <span class="kuhn-li"><span class="kuhn-sw sw-rev"></span><span lang="en">Revolution</span><span lang="es">Revolución</span></span>
+            </span>
+            <span class="kuhn-hint" lang="en">The chart shows the run up to the current year. Click or tap it to go to another year.</span><span class="kuhn-hint" lang="es">El gráfico muestra la corrida hasta el año actual. Haz clic o toca el gráfico para ir a otro año.</span>
+          </figcaption>
+        </figure>
+
+        <div class="kuhn-ctl kuhn-params">
+          <p class="att-label"><span lang="en">The model’s values</span><span lang="es">Valores del modelo</span></p>
+            <div class="att-slider">
+              <label for="kuhn-alpha"><span lang="en">Pull of agreement, α</span><span lang="es">Peso del acuerdo, α</span></label>
+              <input type="range" id="kuhn-alpha" min="0" max="8" step="0.1" value="5.8">
+              <output id="kuhn-alpha-out" for="kuhn-alpha">5.8</output>
+            </div>
+            <div class="att-slider">
+              <label for="kuhn-D"><span lang="en">Path dependence, D</span><span lang="es">Dependencia del camino, D</span></label>
+              <input type="range" id="kuhn-D" min="0" max="15" step="0.5" value="6.5">
+              <output id="kuhn-D-out" for="kuhn-D">6.5</output>
+            </div>
+            <div class="att-slider">
+              <label for="kuhn-I"><span lang="en">Innovation, I</span><span lang="es">Innovación, I</span></label>
+              <input type="range" id="kuhn-I" min="0" max="10" step="0.1" value="1.1">
+              <output id="kuhn-I-out" for="kuhn-I">1.1</output>
+            </div>
+            <div class="att-slider">
+              <label for="kuhn-p"><span lang="en">Character threshold, p</span><span lang="es">Umbral de carácter, p</span></label>
+              <input type="range" id="kuhn-p" min="0" max="1" step="0.05" value="0.7">
+              <output id="kuhn-p-out" for="kuhn-p">0.7</output>
+            </div>
+            <div class="att-slider kuhn-seed">
+              <label for="kuhn-seed"><span lang="en">Seed</span><span lang="es">Semilla</span></label>
+              <span class="kuhn-seed-row"><input type="number" id="kuhn-seed" min="0" max="4294967295" step="1" value="10" inputmode="numeric">
+              <button type="button" class="again" id="kuhn-newseed"><span lang="en">New seed</span><span lang="es">Otra semilla</span></button></span>
+            </div>
+            <p class="att-note" lang="en">With the notebook’s values and seed 10, the page gives exactly the runs in my notebook. Another seed gives another run under the same rules.</p><p class="att-note" lang="es">Con los valores del cuaderno y la semilla 10, la página da exactamente las corridas de mi cuaderno. Otra semilla da otra corrida con las mismas reglas.</p>
+            <button type="button" class="again" id="kuhn-defaults" hidden><span lang="en">Back to the notebook’s values</span><span lang="es">Volver a los valores del cuaderno</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap att-how" id="how">
+      <h2><span lang="en">How the model works</span><span lang="es">Cómo funciona el modelo</span></h2>
+      <p class="measure" lang="en">The model is mine. I wrote it in a Jupyter notebook, inspired by Rogier De Langhe’s agent-based model of Thomas Kuhn’s <em>The Structure of Scientific Revolutions</em>. This page runs the same rules.</p><p class="measure" lang="es">El modelo es mío. Lo escribí en un cuaderno de Jupyter, inspirado en el modelo basado en agentes que Rogier De Langhe propuso para <em>La estructura de las revoluciones científicas</em> de Thomas Kuhn. Esta página usa las mismas reglas.</p>
+
+      <h3 id="scientists"><span lang="en">Scientists and theories</span><span lang="es">La comunidad y sus teorías</span></h3>
+      <p class="measure" lang="en">The community is a grid of 30 × 30 scientists. Each scientist’s neighbours are the eight around them, or fewer at the edges. Every year each scientist publishes one paper within one theory, and the grid shows which. Each scientist also has a character <math><mrow><msub><mi>c</mi><mi>i</mi></msub></mrow></math>, drawn at random between 0 (very conservative) and 1 (very enthusiastic), which never changes.</p><p class="measure" lang="es">La comunidad es una grilla de 30 × 30 integrantes. El vecindario de cada integrante son las ocho casillas de alrededor, o menos en los bordes. Cada año, cada integrante publica un artículo dentro de una teoría, y la grilla muestra cuál. Cada integrante tiene además un carácter <math><mrow><msub><mi>c</mi><mi>i</mi></msub></mrow></math>, sorteado entre 0 (muy conservador) y 1 (muy entusiasta), que nunca cambia.</p>
+
+      <h3 id="faith"><span lang="en">Faith</span><span lang="es">Fe</span></h3>
+      <p class="measure" lang="en">Each year every scientist has some faith <math><mrow><msub><mi>F</mi><mi>i</mi></msub></mrow></math> in their own theory <math><mrow><msub><mi>T</mi><mi>i</mi></msub></mrow></math>:</p><p class="measure" lang="es">Cada año, cada integrante tiene cierta fe <math><mrow><msub><mi>F</mi><mi>i</mi></msub></mrow></math> en su propia teoría <math><mrow><msub><mi>T</mi><mi>i</mi></msub></mrow></math>:</p>
+      <math display="block"><mrow><msub><mi>F</mi><mi>i</mi></msub><mo>=</mo><mfrac><msup><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>i</mi></msub><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mi>α</mi></msup><msup><mrow><mo stretchy="false">(</mo><mi>P</mi><mrow><mo stretchy="false">(</mo><msub><mi>T</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><msub><mi>e</mi><mi>i</mi></msub></msup></mfrac></mrow></math>
+      <div lang="en"><math display="block"><mrow><msub><mi>e</mi><mi>i</mi></msub><mo>=</mo><mrow><mo>{</mo><mtable columnalign="left left" columnspacing="1.2em"><mtr><mtd style="text-align:left"><mn>1</mn></mtd><mtd style="text-align:left"><mrow><mtext>if</mtext><mspace width="0.4em"/><msub><mi>c</mi><mi>i</mi></msub><mo>≤</mo><mi>p</mi></mrow></mtd></mtr><mtr><mtd style="text-align:left"><mrow><mn>2</mn><mo>&#8290;</mo><msub><mi>c</mi><mi>i</mi></msub></mrow></mtd><mtd style="text-align:left"><mrow><mtext>if</mtext><mspace width="0.4em"/><msub><mi>c</mi><mi>i</mi></msub><mo>&gt;</mo><mi>p</mi></mrow></mtd></mtr></mtable></mrow></mrow></math></div><div lang="es"><math display="block"><mrow><msub><mi>e</mi><mi>i</mi></msub><mo>=</mo><mrow><mo>{</mo><mtable columnalign="left left" columnspacing="1.2em"><mtr><mtd style="text-align:left"><mn>1</mn></mtd><mtd style="text-align:left"><mrow><mtext>si</mtext><mspace width="0.4em"/><msub><mi>c</mi><mi>i</mi></msub><mo>≤</mo><mi>p</mi></mrow></mtd></mtr><mtr><mtd style="text-align:left"><mrow><mn>2</mn><mo>&#8290;</mo><msub><mi>c</mi><mi>i</mi></msub></mrow></mtd><mtd style="text-align:left"><mrow><mtext>si</mtext><mspace width="0.4em"/><msub><mi>c</mi><mi>i</mi></msub><mo>&gt;</mo><mi>p</mi></mrow></mtd></mtr></mtable></mrow></mrow></math></div>
+      <p class="measure" lang="en">Here <math><mrow><msub><mi>A</mi><mi>i</mi></msub></mrow></math> is how many of the scientist’s neighbours share the theory, and <math><mrow><mi>P</mi><mrow><mo stretchy="false">(</mo><msub><mi>T</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> is how many papers have been published in it so far, this year’s included. Agreement pays: neighbours in the same theory give support, feedback and room to specialize, and <math><mrow><mi>α</mi></mrow></math> sets how much this counts. Publications cost: the more has been done within a theory, the less is left to discover. Enthusiastic scientists, whose character is above <math><mrow><mi>p</mi></mrow></math>, feel that cost more, because the publications are raised to <math><mrow><mn>2</mn><mo>&#8290;</mo><msub><mi>c</mi><mi>i</mi></msub></mrow></math> instead of 1.</p><p class="measure" lang="es">Aquí <math><mrow><msub><mi>A</mi><mi>i</mi></msub></mrow></math> es cuántos integrantes del vecindario comparten la teoría y <math><mrow><mi>P</mi><mrow><mo stretchy="false">(</mo><msub><mi>T</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> es cuántos artículos se han publicado en ella hasta ahora, incluidos los de este año. El acuerdo rinde: quienes trabajan alrededor en la misma teoría dan apoyo, retroalimentación y espacio para especializarse, y <math><mrow><mi>α</mi></mrow></math> fija cuánto pesa eso. Las publicaciones cuestan: cuanto más se ha hecho dentro de una teoría, menos queda por descubrir. Quienes tienen un carácter entusiasta, por encima de <math><mrow><mi>p</mi></mrow></math>, sienten más ese costo, porque las publicaciones se elevan a <math><mrow><mn>2</mn><mo>&#8290;</mo><msub><mi>c</mi><mi>i</mi></msub></mrow></math> en lugar de 1.</p>
+
+      <h3 id="choice"><span lang="en">Choosing a theory</span><span lang="es">Elegir una teoría</span></h3>
+      <p class="measure" lang="en">Then each scientist chooses the theory of next year’s paper. Each option has a weight: the theory of each neighbour <math><mrow><mi>v</mi></mrow></math> weighs that neighbour’s faith; staying with their own theory weighs their own faith times the path dependence <math><mrow><mi>D</mi></mrow></math>; and a theory nobody has held before, <math><mrow><msup><mi>T</mi><mo>∗</mo></msup></mrow></math>, weighs more the more enthusiastic the scientist is and the less faith there is around them, as set by the innovation <math><mrow><mi>I</mi></mrow></math>:</p><p class="measure" lang="es">Luego cada integrante elige la teoría de su artículo del año siguiente. Cada opción tiene un peso: la teoría de cada integrante <math><mrow><mi>v</mi></mrow></math> del vecindario pesa lo que la fe de <math><mrow><mi>v</mi></mrow></math>; quedarse en la propia teoría pesa la propia fe multiplicada por la dependencia del camino <math><mrow><mi>D</mi></mrow></math>; y una teoría que nadie ha sostenido antes, <math><mrow><msup><mi>T</mi><mo>∗</mo></msup></mrow></math>, pesa más cuanto más entusiasta es quien elige y cuanto menos fe hay a su alrededor, según la innovación <math><mrow><mi>I</mi></mrow></math>:</p>
+      <math display="block"><mtable columnalign="right left" columnspacing="0.28em" rowspacing="0.6em"><mtr><mtd style="text-align:right; padding-right:0"><mrow><msub><mi>w</mi><mi>i</mi></msub><mrow><mo stretchy="false">(</mo><msub><mi>T</mi><mi>v</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd style="text-align:left; padding-left:0"><mrow><mo>=</mo><msub><mi>F</mi><mi>v</mi></msub></mrow></mtd></mtr><mtr><mtd style="text-align:right; padding-right:0"><mrow><msub><mi>w</mi><mi>i</mi></msub><mrow><mo stretchy="false">(</mo><msub><mi>T</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd style="text-align:left; padding-left:0"><mrow><mo>=</mo><mi>D</mi><mo>&#8290;</mo><msub><mi>F</mi><mi>i</mi></msub></mrow></mtd></mtr><mtr><mtd style="text-align:right; padding-right:0"><mrow><msub><mi>w</mi><mi>i</mi></msub><mrow><mo stretchy="false">(</mo><msup><mi>T</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd style="text-align:left; padding-left:0"><mrow displaystyle="true"><mo>=</mo><mfrac><mrow><mi>I</mi><mo>&#8290;</mo><msub><mi>c</mi><mi>i</mi></msub></mrow><mrow><munder><mo>∑</mo><mrow><mi>v</mi><mo>∈</mo><msub><mi>N</mi><mi>i</mi></msub></mrow></munder><msub><mi>F</mi><mi>v</mi></msub><mo>+</mo><msub><mi>F</mi><mi>i</mi></msub></mrow></mfrac></mrow></mtd></mtr></mtable></math>
+      <p class="measure" lang="en">where <math><mrow><msub><mi>N</mi><mi>i</mi></msub></mrow></math> is the set of the scientist’s neighbours. The chance of each option is its weight divided by the sum of all the weights:</p><p class="measure" lang="es">donde <math><mrow><msub><mi>N</mi><mi>i</mi></msub></mrow></math> es el vecindario. La probabilidad de cada opción es su peso dividido entre la suma de todos los pesos:</p>
+      <math display="block"><mrow><msub><mi>Pr</mi><mi>i</mi></msub><mrow><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mfrac><mrow><msub><mi>w</mi><mi>i</mi></msub><mrow><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></mrow><mrow><munder><mo>∑</mo><mrow><mi>v</mi><mo>∈</mo><msub><mi>N</mi><mi>i</mi></msub></mrow></munder><msub><mi>F</mi><mi>v</mi></msub><mo>+</mo><mi>D</mi><mo>&#8290;</mo><msub><mi>F</mi><mi>i</mi></msub><mo>+</mo><msub><mi>w</mi><mi>i</mi></msub><mrow><mo stretchy="false">(</mo><msup><mi>T</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow></mrow></mfrac></mrow></math>
+      <p class="measure" lang="en">A theory held by several neighbours collects all their weights, and a neighbour in the scientist’s own theory adds to staying in it. Everyone chooses at the same time, looking at the grid of the year before. Because the weight of a new theory shrinks as faith grows, almost nobody innovates while a paradigm is healthy, and new theories appear in numbers when faith collapses: in a crisis, as Kuhn thought.</p><p class="measure" lang="es">Una teoría que sostienen varias personas del vecindario reúne todos sus pesos, y quien comparte la teoría propia suma a quedarse en ella. Todas las elecciones se hacen a la vez, mirando la grilla del año anterior. Como el peso de una teoría nueva decrece cuando la fe crece, casi nadie innova mientras un paradigma está sano, y las teorías nuevas aparecen en cantidad cuando la fe se derrumba: en una crisis, como pensaba Kuhn.</p>
+
+      <h3 id="phases"><span lang="en">Paradigms, crises and revolutions</span><span lang="es">Paradigmas, crisis y revoluciones</span></h3>
+      <p class="measure" lang="en">The chart names Kuhn’s phases with these definitions. A theory becomes a <em>paradigm</em> when more than half of the scientists hold it for at least ten years in a row, and it counts as the paradigm from the first of those years; in the one-theory start, that theory is the paradigm from year 0. Before the first paradigm the field is in its <em>pre-paradigm</em> phase. While the paradigm holds the majority, that is <em>normal science</em>. When it loses the majority and no other theory has replaced it, that is a <em>crisis</em>; if it wins the majority back, normal science resumes. A <em>revolution</em> is a new theory becoming the paradigm, and the chart marks it at the year that theory first won its majority.</p><p class="measure" lang="es">El gráfico nombra las fases de Kuhn con estas definiciones. Una teoría se vuelve un <em>paradigma</em> cuando más de la mitad de la comunidad la sostiene durante al menos diez años seguidos, y cuenta como paradigma desde el primero de esos años; en el punto de partida con una sola teoría, esa teoría es el paradigma desde el año 0. Antes del primer paradigma, el campo está en su fase <em>preparadigmática</em>. Mientras el paradigma tiene la mayoría, hay <em>ciencia normal</em>. Cuando la pierde y ninguna otra teoría lo ha reemplazado, hay una <em>crisis</em>; si recupera la mayoría, vuelve la ciencia normal. Una <em>revolución</em> es una teoría nueva que se vuelve paradigma, y el gráfico la marca en el año en que esa teoría ganó la mayoría.</p>
+      <p class="measure" lang="en">The ten years keep brief swings from counting: when the community starts split in two, the halves trade a few scientists back and forth at first. Since a paradigm is recognized only after ten years, the most recent years on the chart can be relabelled as the run goes on.</p><p class="measure" lang="es">Los diez años evitan que cuenten las oscilaciones breves: cuando la comunidad empieza dividida en dos, al principio las mitades se intercambian algunas personas. Como un paradigma solo se reconoce tras diez años, los años más recientes del gráfico pueden cambiar de fase a medida que avanza la corrida.</p>
+
+      <h3 id="values"><span lang="en">The starts and the values</span><span lang="es">Los puntos de partida y los valores</span></h3>
+      <p class="measure" lang="en">There are three starts. With one theory, everyone begins in the same theory. With two, the top half of the grid holds one theory and the bottom half another. With many, each scientist begins in a theory drawn at random from 901, so about 550 compete. Each run lasts 300 years.</p><p class="measure" lang="es">Hay tres puntos de partida. Con una teoría, toda la comunidad empieza en la misma. Con dos, la mitad de arriba de la grilla sostiene una teoría y la de abajo, otra. Con muchas, cada integrante empieza en una teoría elegida al azar entre 901, así que compiten unas 550. Cada corrida dura 300 años.</p>
+      <p class="measure" lang="en">The default values are the ones in my notebook: <math><mrow><mi>α</mi><mo>=</mo><mn>5.8</mn></mrow></math>, <math><mrow><mi>D</mi><mo>=</mo><mn>6.5</mn></mrow></math>, <math><mrow><mi>I</mi><mo>=</mo><mn>1.1</mn></mrow></math>, <math><mrow><mi>p</mi><mo>=</mo><mn>0.7</mn></mrow></math> and seed 10. The page uses the same random number generator as Python, so with these values it reproduces the notebook’s runs exactly; another seed gives another run under the same rules. The page’s address keeps the start, the values and the seed, so you can share a run.</p><p class="measure" lang="es">Los valores por defecto son los de mi cuaderno: <math><mrow><mi>α</mi><mo>=</mo><mn>5.8</mn></mrow></math>, <math><mrow><mi>D</mi><mo>=</mo><mn>6.5</mn></mrow></math>, <math><mrow><mi>I</mi><mo>=</mo><mn>1.1</mn></mrow></math>, <math><mrow><mi>p</mi><mo>=</mo><mn>0.7</mn></mrow></math> y la semilla 10. La página usa el mismo generador de números aleatorios que Python, así que con estos valores reproduce exactamente las corridas del cuaderno; otra semilla da otra corrida con las mismas reglas. La dirección de la página guarda el punto de partida, los valores y la semilla, así que puedes compartir una corrida.</p>
+    </section>
+
+    <section class="wrap" id="sources">
+      <h2><span lang="en">Sources</span><span lang="es">Fuentes</span></h2>
+      <ul class="readings refs">
+        <li>Joselu Cabrera Guillermo (2024). <a href="https://github.com/Joselu14/Science-Agent-Based-Model"><em>Science-Agent-Based-Model</em></a>. <span lang="en">Jupyter notebook, in Spanish, on GitHub.</span><span lang="es">Cuaderno de Jupyter, en castellano, en GitHub.</span></li>
+        <li>Rogier De Langhe (2018). <a href="https://doi.org/10.12759/hsr.43.2018.1.28-47">“An Agent-Based Model of Thomas Kuhn’s <em>The Structure of Scientific Revolutions</em>.”</a> <em>Historical Social Research</em> 43 (1): 28–47.</li>
+        <li>Thomas S. Kuhn (1962). <em>The Structure of Scientific Revolutions</em>. Chicago: Uni&shy;ver&shy;si&shy;ty of Chicago Press. <span lang="en">Second edition, with a postscript, 1970.</span><span lang="es">Segunda edición, con un epílogo, 1970.</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span><span class="who">Joselu Cabrera Guillermo</span><br><span lang="en">De&shy;part&shy;ment of Phi&shy;los&shy;o&shy;phy, Duke Uni&shy;ver&shy;si&shy;ty</span><span lang="es">De&shy;par&shy;ta&shy;men&shy;to de Fi&shy;lo&shy;so&shy;fía, Duke Uni&shy;ver&shy;si&shy;ty</span></span>
+      <span><span lang="en">Historical images are in the public domain and credited to their creators.</span><span lang="es">Las imágenes históricas son de dominio público y se acreditan a sus autores.</span><br>
+        <a href="credits.html"><span lang="en">Image credits</span><span lang="es">Créditos de imágenes</span></a></span>
+      <span>&copy; <span class="year">2026</span><br><a href="https://github.com/Joselu14">GitHub</a></span>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/kuhn.js"></script>
+</body>
+</html>

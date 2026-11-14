@@ -34,7 +34,7 @@ const server = http.createServer((req, res) => {
       if (route.request().resourceType() !== 'document') external.push(u);
       return route.abort();
     });
-    const pages = ['index.html', 'research.html', 'attention.html', 'toolkit.html', 'groups/filosofia-de-los-delirios.html', 'templates/course-or-group.html', 'visual.html', 'cv.html', 'credits.html', '404.html'];
+    const pages = ['index.html', 'research.html', 'attention.html', 'kuhn.html', 'toolkit.html', 'groups/filosofia-de-los-delirios.html', 'templates/course-or-group.html', 'visual.html', 'cv.html', 'credits.html', '404.html'];
     let combos = 0, tocs = 0;
     for (const file of pages) {
       await page.goto(base + '/' + file); await page.waitForLoadState('load');
@@ -71,7 +71,7 @@ const server = http.createServer((req, res) => {
     }
     checks.push(combos + ' page/width/language/theme combinations: no horizontal overflow');
     assert.deepEqual(broken, [], 'Broken local references: ' + broken.join(' | ')); checks.push('All local pages and assets exist');
-    assert(tocs >= 38, 'Contents lists: ' + tocs); checks.push(tocs + ' contents links, each landing on a section');
+    assert(tocs >= 46, 'Contents lists: ' + tocs); checks.push(tocs + ' contents links, each landing on a section');
     assert.deepEqual(external, [], 'Requests to other sites: ' + external.join(', ')); checks.push('No requests to other sites (fonts are self-hosted)');
 
     // The arithmetic triangle
@@ -99,7 +99,7 @@ const server = http.createServer((req, res) => {
 
     // Philosopher's toolkit
     await page.goto(base + '/toolkit.html'); await page.locator('[data-set-lang=en]').click();
-    assert.equal(await page.locator('.project').count(), 7);
+    assert.equal(await page.locator('.project').count(), 8);
     const more = page.locator('#ai-formal-philosophy details.more');
     assert.equal(await more.evaluate(d => d.open), false);
     await more.locator('summary').click();
@@ -107,7 +107,7 @@ const server = http.createServer((req, res) => {
     assert.equal(await page.locator('a[href="index.html#triangle"]:visible').count(), 1);
     assert.equal(fs.existsSync(path.join(root, 'assets/docs')), false);
     await page.goto(base + '/teaching.html'); await page.waitForURL(/toolkit\.html$/);
-    checks.push('Toolkit: seven entries, "More about this project" opens, triangle link, old address redirects, no slides');
+    checks.push('Toolkit: eight entries, "More about this project" opens, triangle link, old address redirects, no slides');
 
     // The attention model
     await page.goto(base + '/research.html'); await page.locator('[data-set-lang=en]').click();
@@ -129,6 +129,53 @@ const server = http.createServer((req, res) => {
     assert.match(await page.locator('#att-verdict').textContent(), /^Se acercan/);
     await page.locator('[data-set-lang=en]').click();
     checks.push('Attention model: linked from Research; the paper’s numbers (saliences 0.80/1.00, credences 0.80→0.95 and 0.15→0.03); enthusiastic and Lockean scenarios; sliders keep the tables coherent; Spanish verdicts');
+
+    // Normal science and revolutions: the notebook's runs, the phases, the controls
+    await page.setViewportSize({ width: 1280, height: 1000 });
+    await page.goto(base + '/research.html'); await page.waitForLoadState('load');
+    await page.locator('#methods a[href="kuhn.html"]:visible').click(); await page.waitForURL(/kuhn\.html$/);
+    await page.goto(base + '/toolkit.html'); await page.waitForLoadState('load');
+    assert.equal(await page.locator('#kuhn-model a[href="kuhn.html"]').count(), 1);
+    const nb = JSON.parse(fs.readFileSync(path.join(root, 'tests/kuhn-notebook-seed10.json'), 'utf8'));
+    for (const start of ['hom', 'bif', 'het']) {
+      await page.goto(base + '/kuhn.html' + (start === 'hom' ? '' : '?start=' + start)); await page.waitForLoadState('load');
+      await page.locator('[data-set-lang=en]').click();
+      const n = await page.evaluate(() => KuhnPage.run.counts.map(c => c.length));
+      assert.deepEqual(n, nb[start], 'Not the notebook run: ' + start);
+    }
+    await page.goto(base + '/kuhn.html'); await page.waitForLoadState('load');
+    await page.locator('[data-set-lang=en]').click();
+    const paradigmStarts = async () => page.evaluate(() => KuhnEngine.phases(KuhnPage.run, 300).paradigms.map(p => p.start));
+    assert.deepEqual(await paradigmStarts(), [0, 202]);
+    await page.evaluate(() => KuhnPage.setYear(150));
+    assert.equal(await page.locator('#kuhn-status-head').textContent(), 'Year 150: crisis');
+    await page.evaluate(() => KuhnPage.setYear(230));
+    assert.match(await page.locator('#kuhn-status-body').textContent(), /^Paradigm 2, which took over in year 202, holds 84% of the scientists\. 3 theories in play\. Revolutions so far: 1\.$/);
+    await page.locator('[data-set-lang=es]').click();
+    assert.equal(await page.locator('#kuhn-status-head').textContent(), 'Año 230: ciencia normal');
+    await page.locator('[data-set-lang=en]').click();
+    await page.locator('[data-start=bif]').click(); await page.waitForTimeout(100);
+    assert.deepEqual(await paradigmStarts(), [11, 65, 122, 206]);
+    assert.match(page.url(), /\?start=bif$/);
+    await page.locator('#kuhn-step').click(); await page.locator('#kuhn-step').click();
+    assert.equal(await page.evaluate(() => KuhnPage.year), 2);
+    await page.locator('#kuhn-play').click(); await page.waitForTimeout(700); await page.locator('#kuhn-play').click();
+    const yPlayed = await page.evaluate(() => KuhnPage.year);
+    assert(yPlayed > 4 && yPlayed < 40, 'Playing: ' + yPlayed);
+    await page.locator('#kuhn-alpha').fill('4');
+    await page.waitForTimeout(100);
+    assert.match(page.url(), /alpha=4/);
+    assert(await page.locator('#kuhn-defaults').isVisible());
+    await page.locator('#kuhn-seed').fill('7'); await page.locator('#kuhn-seed').press('Enter'); await page.waitForTimeout(100);
+    assert.equal(await page.evaluate(() => KuhnPage.settings.seed), 7);
+    await page.locator('#kuhn-defaults').click(); await page.waitForTimeout(100);
+    assert.deepEqual(await page.evaluate(() => [KuhnPage.settings.alpha, KuhnPage.settings.seed]), [5.8, 10]);
+    assert.match(page.url(), /kuhn\.html\?start=bif$/);
+    const chartBox = await page.locator('#kuhn-chart').boundingBox();
+    await page.mouse.click(chartBox.x + chartBox.width * 0.5, chartBox.y + chartBox.height * 0.5);
+    const yClicked = await page.evaluate(() => KuhnPage.year);
+    assert(yClicked > 130 && yClicked < 170, 'Chart click: ' + yClicked);
+    checks.push('Normal science and revolutions: linked from Research and the toolkit; seed 10 gives the notebook’s runs for all three starts; paradigms at years 0 and 202 (one theory) and 11, 65, 122, 206 (two); status in both languages; step, play, sliders, seed, defaults, address and chart clicks work');
 
     // A reading-group page and the blank template
     await page.goto(base + '/toolkit.html'); await page.locator('[data-set-lang=en]').click();

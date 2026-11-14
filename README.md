@@ -19,8 +19,9 @@ Plain HTML + CSS + a little JavaScript: no build step, no frameworks. GitHub Pag
 | `credits.html` | Author, date, source and licence of every image |
 | `404.html` | "Page not found" page with one of the ten plates drawn at random (GitHub Pages uses it automatically) |
 | `assets/css/style.css` | All the styling. Colours and typefaces are the tokens at the top |
-| `assets/css/fonts.css`, `assets/fonts/` | The typefaces, served from the site itself (no Google Fonts): IM Fell, Alegreya and Courier Prime (OFL), and a subset of Latin Modern Math for the formulas on `attention.html` (GUST Font License; see `README-latin-modern-math-subset.txt`) |
+| `assets/css/fonts.css`, `assets/fonts/` | The typefaces, served from the site itself (no Google Fonts): IM Fell, Alegreya and Courier Prime (OFL), and a subset of Latin Modern Math for the formulas on `attention.html` and `kuhn.html` (GUST Font License; see `README-latin-modern-math-subset.txt`) |
 | `attention.html`, `assets/js/attention.js` | The interactive attention model (two agents, dogmatic and enthusiastic attention policies) |
+| `kuhn.html`, `assets/js/kuhn.js` | *Normal science and revolutions*: the agent-based model of Kuhn from the Science-Agent-Based-Model notebook. `kuhn.js` uses Python's random number generator, so seed 10 with the notebook's values gives the notebook's runs exactly; `tests/kuhn-notebook-seed10.json` holds those runs (number of theories per year), computed with the notebook's own code |
 | `assets/js/main.js` | Language, theme, the arithmetic triangle, the random plate (404) and the gallery |
 | `assets/img/plates/` | The public-domain images (list in `sources.txt`) |
 | `assets/img/gallery/` | Your photos (`photos/`) and posters (`posters/`) |
@@ -51,7 +52,7 @@ For short bits inside a sentence use `<span lang="en">…</span><span lang="es">
 **Placeholders.** Anything highlighted in yellow (`class="todo"`) still needs real content.
 Search the files for `todo` to find them all.
 
-**Contents lists.** Research, the attention model and the course and group pages open with a *Contents* list (`<nav class="toc">`).
+**Contents lists.** Research, the two interactive models and the course and group pages open with a *Contents* list (`<nav class="toc">`).
 Each entry links to a section's `id`, so when you add, rename or remove a section, change its entry too. `tests/check-site.cjs` fails if a link has no section to land on.
 
 **Adding a photo or poster.** See the instructions in the comment at the top of the gallery in `visual.html`.

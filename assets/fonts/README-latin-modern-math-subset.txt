@@ -3,7 +3,7 @@ latin-modern-math-subset.woff2
 
 This file is a derived version of Latin Modern Math, version 1.959 (5 September 2014),
 by Bogusław Jackowski, Piotr Strzelczyk and Piotr Pianowski, on behalf of the TeX users
-groups (GUST e-foundry). It is used to set the formulas on attention.html.
+groups (GUST e-foundry). It is used to set the formulas on attention.html and kuhn.html.
 
 Changes made to the original latinmodern-math.otf (November 2026):
   - kept only the characters the formulas need (Basic Latin, Latin-1, Greek, prime,
