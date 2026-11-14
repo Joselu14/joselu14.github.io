@@ -71,7 +71,7 @@ const server = http.createServer((req, res) => {
     }
     checks.push(combos + ' page/width/language/theme combinations: no horizontal overflow');
     assert.deepEqual(broken, [], 'Broken local references: ' + broken.join(' | ')); checks.push('All local pages and assets exist');
-    assert(tocs >= 46, 'Contents lists: ' + tocs); checks.push(tocs + ' contents links, each landing on a section');
+    assert(tocs >= 48, 'Contents lists: ' + tocs); checks.push(tocs + ' contents links, each landing on a section');
     assert.deepEqual(external, [], 'Requests to other sites: ' + external.join(', ')); checks.push('No requests to other sites (fonts are self-hosted)');
 
     // The arithmetic triangle
@@ -99,15 +99,15 @@ const server = http.createServer((req, res) => {
 
     // Philosopher's toolkit
     await page.goto(base + '/toolkit.html'); await page.locator('[data-set-lang=en]').click();
-    assert.equal(await page.locator('.project').count(), 8);
+    assert.equal(await page.locator('.project').count(), 9);
     const more = page.locator('#ai-formal-philosophy details.more');
     assert.equal(await more.evaluate(d => d.open), false);
     await more.locator('summary').click();
     assert.equal(await more.evaluate(d => d.open), true);
-    assert.equal(await page.locator('a[href="index.html#triangle"]:visible').count(), 1);
+    assert.equal(await page.locator('#triangle-tool a[href="index.html#triangle"]:visible, .project:not(#animations) a[href="index.html#triangle"]:visible').count(), 1);
     assert.equal(fs.existsSync(path.join(root, 'assets/docs')), false);
     await page.goto(base + '/teaching.html'); await page.waitForURL(/toolkit\.html$/);
-    checks.push('Toolkit: eight entries, "More about this project" opens, triangle link, old address redirects, no slides');
+    checks.push('Toolkit: nine entries, "More about this project" opens, triangle link, old address redirects, no slides');
 
     // The attention model
     await page.goto(base + '/research.html'); await page.locator('[data-set-lang=en]').click();
@@ -176,6 +176,25 @@ const server = http.createServer((req, res) => {
     const yClicked = await page.evaluate(() => KuhnPage.year);
     assert(yClicked > 130 && yClicked < 170, 'Chart click: ' + yClicked);
     checks.push('Normal science and revolutions: linked from Research and the toolkit; seed 10 gives the notebook’s runs for all three starts; paradigms at years 0 and 202 (one theory) and 11, 65, 122, 206 (two); status in both languages; step, play, sliders, seed, defaults, address and chart clicks work');
+
+    // Animations: six videos with posters; the visible one follows the language; switching pauses playback
+    const vids = ['coin', 'attention', 'kuhn'].flatMap(n => ['en', 'es'].map(l => n + '-' + l));
+    for (const v of vids) for (const ext of ['mp4', 'jpg']) assert(fs.existsSync(path.join(root, 'assets/video', v + '.' + ext)), 'Missing ' + v + '.' + ext);
+    await page.goto(base + '/toolkit.html'); await page.waitForLoadState('load');
+    await page.locator('[data-set-lang=en]').click();
+    assert.equal(await page.locator('#animations video:visible').count(), 3);
+    assert.deepEqual(await page.locator('#animations video:visible').evaluateAll(vs => vs.map(v => v.getAttribute('poster').split('/').pop())), ['coin-en.jpg', 'attention-en.jpg', 'kuhn-en.jpg']);
+    await page.locator('[data-set-lang=es]').click();
+    assert.deepEqual(await page.locator('#animations video:visible').evaluateAll(vs => vs.map(v => v.querySelector('source').getAttribute('src'))), ['assets/video/coin-es.mp4', 'assets/video/attention-es.mp4', 'assets/video/kuhn-es.mp4']);
+    await page.locator('[data-set-lang=en]').click();
+    for (const p of ['attention.html', 'kuhn.html']) {
+      await page.goto(base + '/' + p); await page.waitForLoadState('load');
+      assert.equal(await page.locator('#animation video:visible').count(), 1, p);
+      assert.equal(await page.locator('nav.toc a[href="#animation"]').count(), 1, p);
+    }
+    await page.goto(base + '/index.html'); await page.waitForLoadState('load');
+    assert.equal(await page.locator('#triangle a[href="toolkit.html#anim-coin"]:visible').count(), 1);
+    checks.push('Animations: six videos and posters exist; the toolkit shows three, in the visitor’s language; one on each model page, in its contents list; linked from the home triangle');
 
     // A reading-group page and the blank template
     await page.goto(base + '/toolkit.html'); await page.locator('[data-set-lang=en]').click();

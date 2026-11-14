@@ -15,6 +15,7 @@
 
   /* ---------- Language ---------- */
   function setLang(l) {
+    document.querySelectorAll("video").forEach(function (v) { if (!v.paused) v.pause(); });
     root.setAttribute("data-lang", l);
     root.lang = l;
     store("lang", l);

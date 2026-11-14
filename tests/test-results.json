@@ -1,14 +1,15 @@
 {
-  "date": "2026-11-14T19:00:56.216Z",
+  "date": "2026-11-14T19:59:16.524Z",
   "checks": [
     "176 page/width/language/theme combinations: no horizontal overflow",
     "All local pages and assets exist",
-    "46 contents links, each landing on a section",
+    "48 contents links, each landing on a section",
     "No requests to other sites (fonts are self-hosted)",
     "Triangle: path, C(n, h), rule of succession, Spanish status text, 12-row cap, start over",
-    "Toolkit: eight entries, \"More about this project\" opens, triangle link, old address redirects, no slides",
+    "Toolkit: nine entries, \"More about this project\" opens, triangle link, old address redirects, no slides",
     "Attention model: linked from Research; the paper’s numbers (saliences 0.80/1.00, credences 0.80→0.95 and 0.15→0.03); enthusiastic and Lockean scenarios; sliders keep the tables coherent; Spanish verdicts",
     "Normal science and revolutions: linked from Research and the toolkit; seed 10 gives the notebook’s runs for all three starts; paradigms at years 0 and 202 (one theory) and 11, 65, 122, 206 (two); status in both languages; step, play, sliders, seed, defaults, address and chart clicks work",
+    "Animations: six videos and posters exist; the toolkit shows three, in the visitor’s language; one on each model page, in its contents list; linked from the home triangle",
     "Reading group: linked from the toolkit, English and Spanish titles, 10 weeks, 21 readings, PDFs and LaTeX templates present; template is noindex and outside the sitemap",
     "404: random plate, redraw gives a different plate, credit link is absolute",
     "Gallery: poster filter from URL, viewer arrows, keys, drag, click outside to close",

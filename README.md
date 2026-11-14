@@ -21,6 +21,7 @@ Plain HTML + CSS + a little JavaScript: no build step, no frameworks. GitHub Pag
 | `assets/css/style.css` | All the styling. Colours and typefaces are the tokens at the top |
 | `assets/css/fonts.css`, `assets/fonts/` | The typefaces, served from the site itself (no Google Fonts): IM Fell, Alegreya and Courier Prime (OFL), and a subset of Latin Modern Math for the formulas on `attention.html` and `kuhn.html` (GUST Font License; see `README-latin-modern-math-subset.txt`) |
 | `attention.html`, `assets/js/attention.js` | The interactive attention model (two agents, dogmatic and enthusiastic attention policies) |
+| `assets/video/`, `animations/` | The three animations (coin and triangle, attention model, Kuhn model): square MP4 videos in English and Spanish with their posters, and the Manim code that makes them (see `animations/README.md`). They appear in the toolkit (`#animations`) and on `attention.html` and `kuhn.html` |
 | `kuhn.html`, `assets/js/kuhn.js` | *Normal science and revolutions*: the agent-based model of Kuhn from the Science-Agent-Based-Model notebook. `kuhn.js` uses Python's random number generator, so seed 10 with the notebook's values gives the notebook's runs exactly; `tests/kuhn-notebook-seed10.json` holds those runs (number of theories per year), computed with the notebook's own code |
 | `assets/js/main.js` | Language, theme, the arithmetic triangle, the random plate (404) and the gallery |
 | `assets/img/plates/` | The public-domain images (list in `sources.txt`) |
