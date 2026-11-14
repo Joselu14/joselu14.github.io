@@ -1,0 +1,37 @@
+/* Self-hosted fonts (no requests to Google). All three families are under the SIL Open Font License 1.1.
+   IM Fell types: digitized by Igino Marini from the 17th-century types Bishop John Fell left to Oxford.
+   Alegreya: Juan Pablo del Peral, Huerta Tipográfica (Argentina).
+   Courier Prime: Alan Dague-Greene, for Quote-Unquote Apps. Used only inside the ASCII figure. */
+
+@font-face { font-family: "IM Fell French Canon"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/im-fell-french-canon-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "IM Fell French Canon"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("../fonts/im-fell-french-canon-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "IM Fell Double Pica"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/im-fell-double-pica-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "IM Fell Double Pica"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("../fonts/im-fell-double-pica-latin-400-italic.woff2") format("woff2"); }
+
+@font-face { font-family: "Alegreya"; font-style: normal; font-weight: 400 900; font-display: swap;
+  src: url("../fonts/alegreya-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Alegreya"; font-style: italic; font-weight: 400 900; font-display: swap;
+  src: url("../fonts/alegreya-latin-wght-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Alegreya"; font-style: normal; font-weight: 400 900; font-display: swap;
+  src: url("../fonts/alegreya-latin-ext-wght-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Alegreya"; font-style: italic; font-weight: 400 900; font-display: swap;
+  src: url("../fonts/alegreya-latin-ext-wght-italic.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Alegreya"; font-style: normal; font-weight: 400 900; font-display: swap;
+  src: url("../fonts/alegreya-greek-wght-normal.woff2") format("woff2");
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF; }
+@font-face { font-family: "Alegreya"; font-style: italic; font-weight: 400 900; font-display: swap;
+  src: url("../fonts/alegreya-greek-wght-italic.woff2") format("woff2");
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF; }
+
+@font-face { font-family: "Courier Prime"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/courier-prime-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Courier Prime"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("../fonts/courier-prime-latin-700-normal.woff2") format("woff2"); }

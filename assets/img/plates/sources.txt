@@ -1,0 +1,12 @@
+# Public-domain plates used on the site: local file name, then the Wikimedia Commons address.
+# get-images.bat reads this list. Lines starting with # are ignored.
+duck-rabbit.png https://commons.wikimedia.org/wiki/Special:FilePath/Kaninchen_und_Ente.png?width=960
+yang-hui-triangle.gif https://commons.wikimedia.org/wiki/Special:FilePath/Yanghui_triangle.gif
+cajal-purkinje.jpg https://commons.wikimedia.org/wiki/Special:FilePath/Cajal_-_a_purkinje_neuron_from_the_human_cerebellum.jpg
+fludd-oculus-imaginationis.jpg https://commons.wikimedia.org/wiki/Special:FilePath/Oculus_imaginationis_inTractatus_1_Section_2_Portion_3_Robert_Fludd%E2%80%99s_Ars_Memoriae_Fludd,_1617.jpg
+guaman-poma-contador.png https://commons.wikimedia.org/wiki/Special:FilePath/Nueva_cor%C3%B3nica_y_buen_gobierno_(1936_facsimile)_p360.png
+caravaggio-cardsharps.jpg https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio_(Michelangelo_Merisi)_-_The_Cardsharps_-_Google_Art_Project.jpg?width=1280
+vermeer-astronomer.jpg https://commons.wikimedia.org/wiki/Special:FilePath/Johannes_Vermeer_-_The_Astronomer_-_1668.jpg?width=960
+nightingale-rose.jpg https://commons.wikimedia.org/wiki/Special:FilePath/Nightingale-mortality.jpg?width=1280
+durer-melencolia.jpg https://commons.wikimedia.org/wiki/Special:FilePath/Melencolia_I_MET_DP815742.jpg?width=960
+voltolina-lecture-bologna.jpg https://commons.wikimedia.org/wiki/Special:FilePath/Laurentius_de_Voltolina_Vorlesung_vor_Studenten_-_Min_1233_-_Kupferstichkabinett_Berlin.jpg?width=1280

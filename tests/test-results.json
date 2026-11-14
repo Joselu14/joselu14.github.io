@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-14T04:26:05.125Z",
+  "checks": [
+    "112 page/width/language/theme combinations: no horizontal overflow",
+    "All local pages and assets exist",
+    "No requests to other sites (fonts are self-hosted)",
+    "Triangle: path, C(n, h), rule of succession, Spanish status text, 12-row cap, start over",
+    "Toolkit: four entries, \"More about this project\" opens, triangle link, old address redirects, no slides",
+    "404: random plate, redraw gives a different plate, credit link is absolute",
+    "Gallery: poster filter from URL, viewer arrows, keys, drag, click outside to close",
+    "No JavaScript errors"
+  ]
+}

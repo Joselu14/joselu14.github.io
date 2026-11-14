@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-title-en="Page not found — Joselu Cabrera Guillermo" data-title-es="Página no encontrada — Joselu Cabrera Guillermo">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — Joselu Cabrera Guillermo</title>
+  <meta name="description" content="Page not found.">
+  <meta name="author" content="Joselu Cabrera Guillermo">
+  <meta name="robots" content="noindex">
+  <!-- Set language and theme before the page paints (remembers the visitor's choice). -->
+  <script>
+    (function () {
+      var d = document.documentElement, l, t;
+      try { l = localStorage.getItem("lang"); t = localStorage.getItem("theme"); } catch (e) {}
+      if (!l) l = ((navigator.languages && navigator.languages[0]) || navigator.language || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+      d.setAttribute("data-lang", l); d.lang = l;
+      if (t) d.setAttribute("data-theme", t);
+    })();
+  </script>
+  <link rel="preload" href="/assets/fonts/alegreya-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body data-root="/">
+  <a class="skip" href="#main"><span lang="en">Skip to content</span><span lang="es">Ir al contenido</span></a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/index.html">Joselu Cabrera Guillermo</a>
+      <nav class="nav" aria-label="Main / Principal">
+        <a href="/index.html"><span lang="en">About</span><span lang="es">Inicio</span></a>
+        <a href="/research.html"><span lang="en">Research</span><span lang="es">Investigación</span></a>
+        <a href="/toolkit.html"><span lang="en">Philosopher’s toolkit</span><span lang="es">Herramientas</span></a>
+        <a href="/visual.html"><span lang="en">Visual work</span><span lang="es">Obra visual</span></a>
+        <a href="/cv.html">CV</a>
+      </nav>
+      <div class="tools">
+        <div class="seg" role="group" aria-label="Language / Idioma">
+          <button type="button" data-set-lang="en" aria-pressed="true">English</button>
+          <button type="button" data-set-lang="es" aria-pressed="false">Español</button>
+        </div>
+        <button type="button" class="icon-btn" id="theme-toggle" aria-label="Switch light or dark mode"
+                data-label-en="Switch light or dark mode" data-label-es="Cambiar a modo claro u oscuro"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="7.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 2.75a7.25 7.25 0 0 1 0 14.5z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="wrap lost">
+      <div>
+        <h1><span lang="en">Nothing at this address</span><span lang="es">No hay nada en esta dirección</span></h1>
+        <p class="lede"><span lang="en">The page may have moved. Meanwhile, here is one of the ten plates on this site, drawn at random.</span><span lang="es">Quizá la página cambió de lugar. Mientras tanto, aquí tienes una de las diez láminas de este sitio, elegida al azar.</span></p>
+        <div class="actions"><a class="btn primary" href="/index.html"><span lang="en">Go to the home page</span><span lang="es">Ir al inicio</span></a></div>
+      </div>
+      <div>
+        <div id="random-plate" aria-live="polite">
+          <figure class="plate" data-tint="indigo">
+            <div class="mat"><img src="/assets/img/plates/duck-rabbit.png" width="960" height="815"
+              alt="Ink drawing that can be seen either as a duck or as a rabbit"
+              data-alt-en="Ink drawing that can be seen either as a duck or as a rabbit"
+              data-alt-es="Dibujo a tinta que puede verse como un pato o como un conejo"></div>
+            <figcaption><span class="label">Pl. I.</span> <em>Kaninchen und Ente</em>, <em>Fliegende Blätter</em>, 1892. <a href="/credits.html#duck-rabbit"><span lang="en">Credits</span><span lang="es">Créditos</span></a></figcaption>
+          </figure>
+        </div>
+        <button class="redraw" id="draw-again" type="button" hidden><span lang="en">Draw another plate</span><span lang="es">Sacar otra lámina</span></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span><span class="who">Joselu Cabrera Guillermo</span><br><span lang="en">De&shy;part&shy;ment of Phi&shy;los&shy;o&shy;phy, Duke Uni&shy;ver&shy;si&shy;ty</span><span lang="es">De&shy;par&shy;ta&shy;men&shy;to de Fi&shy;lo&shy;so&shy;fía, Duke Uni&shy;ver&shy;si&shy;ty</span></span>
+      <span><span lang="en">Historical images are in the public domain and credited to their creators.</span><span lang="es">Las imágenes históricas son de dominio público y se acreditan a sus autores.</span><br>
+        <a href="/credits.html"><span lang="en">Image credits</span><span lang="es">Créditos de imágenes</span></a></span>
+      <span>&copy; <span class="year">2026</span><br><a href="https://github.com/Joselu14">GitHub</a></span>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
