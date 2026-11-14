@@ -1,0 +1,69 @@
+% Separata o documento de bienvenida (plantilla con un ejemplo real: bienvenida al grupo
+% Filosofía de los delirios, CIFA, 2026). Las citas son de autor y año, con natbib y refs.bib.
+% Compilar con XeLaTeX:  latexmk -xelatex separata-bienvenida.tex
+\documentclass[a4paper,nofonts,justified]{tufte-handout}
+\usepackage[spanish]{jcg-tufte}
+
+\title{Filosofía de los delirios}
+\subtitle{Bienvenida al grupo de estudio}
+\author{Jose Luis Cabrera Guillermo}
+\date{9 de enero de 2026}
+\status{Separata}
+
+\begin{document}
+\maketitle
+
+Bienvenidos al grupo de estudio sobre filosofía de los delirios organizado por el CIFA para el año 2026. Este grupo surge como parte de las iniciativas del CIFA de diversificar sus temas más allá de los temas tradicionalmente asociados a la filosofía \emph{analítica} (filosofía del lenguaje, lógica, filosofía de las matemáticas) y aprendiendo de experiencias previas de miembros de Theorema, como el grupo de estudio de filosofía de la mente \emph{Consciousness \& Cognition}.
+
+El encargado principal de la logística del grupo es Jose Luis Cabrera Guillermo.\sidenote{\href{mailto:jlcabrerag@pucp.edu.pe}{jlcabrerag@pucp.edu.pe}} Pueden escribirle a él o al correo del CIFA\sidenote{\href{mailto:cifa.filosofia@gmail.com}{cifa.filosofia@gmail.com}} con cualquier consulta. Este documento presenta la dinámica del grupo de estudio y plantea algunas preguntas e ideas guía que pueden servir para entender lo que vamos a hacer.
+
+\section{Reglas de juego}
+Estas reglas son vinculantes tanto para participantes activxs como para oyentes libres.
+
+\begin{rules}
+  \item[Puntualidad] Llegar puntuales para iniciar temprano nuestras sesiones.
+  \item[Compromiso] Cumplir con los compromisos asociados a su rol de oyente libre o participante activx.
+  \item[Máxima caridad] Estar dispuestos a hacer la mejor interpretación posible de las palabras de lxs demás y a explicar cualquier idea, teoría o caso que no sea \emph{common ground} entre los participantes.
+  \item[Claridad] Hacer todo lo posible para que las participaciones propias sean suficientemente claras y no dificulten el entendimiento mutuo.
+\end{rules}
+
+Además, seguiremos estas reglas para participar durante las reuniones:
+
+\begin{rules}
+  \item[Distinción mano/dedo] Participamos levantando la mano o, si no se interrumpe a nadie que esté desarrollando una idea, simplemente prendiendo el micrófono y hablando. Para mantener el orden distinguimos entre levantar la \textbf{mano} y levantar un \textbf{dedo}. Las manos son participaciones que van a cambiar el hilo de la conversación; los dedos hacen algún \emph{follow-up} al hilo vigente.\marginnote{Primero se agotan los dedos; luego se cede el paso a una mano.} Por obvias razones, se priorizará agotar primero las participaciones de tipo dedo antes de cederle el paso a una mano.
+  \item[Ejemplificación] Para maximizar el entendimiento común, será casi obligatorio usar ejemplos para ilustrar las ideas propias. A veces en filosofía hay que argumentar puntos abstractos y es difícil ejemplificar; pero como vamos a hablar de casos de delirios y estados mentales muy particulares, no cuesta mucho intentar plantear un ejemplo. No hace falta investigar casos reales: pueden plantear escenarios hipotéticos.
+  \item[Respaldo] En el CIFA incentivamos el desacuerdo y la discusión. Siempre será bienvenido que expresen su rechazo o desacuerdo con los textos o con las ideas de miembrxs del grupo, pero siempre respaldado con alguna razón o evidencia, aunque sea una intuición filosófica. Si solo cuentan con sus intuiciones, pueden usar otros ejemplos para mostrar su fuerza.
+\end{rules}
+
+\section{Breve introducción a la filosofía de los estados mentales}
+
+\subsection{Preguntas descriptivas}
+El asunto de nuestro grupo de estudio es la mente. Una pregunta inmediata es: ¿qué es la mente? ¿O qué son los procesos o estados mentales? Este grupo no se adentrará en las discusiones clásicas de filosofía de la mente sobre la relación entre propiedades mentales y físicas, ni en el problema mente-cuerpo. Como respuesta provisional, porque es coherente con la mayor parte de las ciencias cognitivas contemporáneas, apelaremos a la teoría computacional de la mente \citep[TCM;][]{block1995}. Esta teoría puede resumirse en un eslogan: la mente es al software como el cerebro es al hardware. La mente es, en pocas palabras, una máquina manipuladora de símbolos o representaciones con una base físico-biológica. ¿Qué son entonces los estados mentales? Tipos de estados de esta máquina que se distinguen por su rol causal en toda la maquinaria. Si no creen que la mente sea reducible a una computadora, contamos con otra respuesta provisoria que motivó a la TCM: el funcionalismo y el disposicionalismo \citep{lewis1978,stalnaker1984}. Según estas propuestas, lo que define a un estado mental es el lugar que ocupa en la organización causal de la mente, o el rol disposicional que cumple en nuestra vida mental.
+
+Veamos un ejemplo con las creencias, el estado mental más trabajado en la historia de la filosofía. Según la TCM, una creencia es una relación entre un agente cognitivo, una representación mental (algo que representa) y el contenido de esa representación (lo representado). Además, esa representación debe jugar un rol especial en la economía cognitiva del agente: funcionar como premisa de sus inferencias, servir como información para la planeación y la acción, y generar ciertas disposiciones verbales. Es lo que los filósofos de las ciencias cognitivas que adhieren a la TCM llamarían una representación que pertenece a la \emph{caja de creencias}.
+
+El funcionalismo y el disposicionalismo son mucho más débiles: evitan toda referencia a representaciones y afirman que las creencias son solamente relaciones entre agentes y contenidos, caracterizadas porque el agente toma esos contenidos como verdaderos en sus inferencias, acciones y reportes verbales. Dicho sencillamente, las creencias son compromisos con la verdad. \citet{stalnaker1984} resume esta concepción de forma pragmática:
+
+\begin{quote}
+\textbf{Creencias}: un agente $S$ cree que $p$ si, y solo si, las acciones de $S$ son acciones que realizarían sus deseos en un mundo en el que $p$ es verdadero.
+\end{quote}
+
+Esto nos sirve para distinguir las creencias de otros estados mentales. Los deseos, por ejemplo, también son relaciones entre agentes y contenidos, pero juegan un rol causal muy distinto: tomamos nuestras creencias como verdaderas e inferimos y actuamos sobre esa base, pero no hacemos lo mismo con los deseos. Si deseo ser presidente y no lo soy, no voy a actuar asumiendo que soy presidente, sino haciendo aquello que creo que me llevará a serlo.
+
+Cuando se pregunten por un estado mental, entonces, pregúntense por el rol que cumple en la vida cognitiva de los agentes:\marginnote{Preguntas guía para cualquier estado mental.}
+\begin{itemize}
+  \item ¿Qué tipo de eventos fijan o causan estos estados mentales?
+  \item ¿Qué comportamiento causan?
+  \item ¿Tienen relación con las disposiciones verbales de los agentes?
+  \item ¿Son accesibles a los agentes?
+\end{itemize}
+
+\subsection{Preguntas normativas}
+Como habrán notado en el sílabo, también haremos preguntas normativas: si los delirios son patológicos y si son epistémicamente malos. Evaluar normativamente un estado mental no es distinto de evaluar una acción o una institución: identificamos un criterio normativo y verificamos si el estado mental lo cumple. Algunos creen, por ejemplo, que las creencias tienen como fin el conocimiento \citep{williamson2000}: bajo esa perspectiva, toda creencia falsa se evalúa negativamente, pero no toda creencia verdadera se evalúa positivamente, pues la verdad no basta para el conocimiento.
+
+Para hacer epistemología de un estado mental identificamos valores epistémicos (el conocimiento, la coherencia, la verdad, la precisión, la sensibilidad a la evidencia) y evaluamos si el estado los cumple, a la larga o en ciertas circunstancias. Para eso, el estado debe ser susceptible de evaluación epistémica: sería extraño evaluar así la sensación del hambre. Otra vía es identificar su función propia, el rol que explica su selección en la historia natural, y evaluar si contribuye a los valores globales del agente.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}

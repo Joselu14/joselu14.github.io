@@ -87,7 +87,7 @@ const server = http.createServer((req, res) => {
 
     // Philosopher's toolkit
     await page.goto(base + '/toolkit.html'); await page.locator('[data-set-lang=en]').click();
-    assert.equal(await page.locator('.project').count(), 5);
+    assert.equal(await page.locator('.project').count(), 6);
     const more = page.locator('#ai-formal-philosophy details.more');
     assert.equal(await more.evaluate(d => d.open), false);
     await more.locator('summary').click();
@@ -95,22 +95,26 @@ const server = http.createServer((req, res) => {
     assert.equal(await page.locator('a[href="index.html#triangle"]:visible').count(), 1);
     assert.equal(fs.existsSync(path.join(root, 'assets/docs')), false);
     await page.goto(base + '/teaching.html'); await page.waitForURL(/toolkit\.html$/);
-    checks.push('Toolkit: five entries, "More about this project" opens, triangle link, old address redirects, no slides');
+    checks.push('Toolkit: six entries, "More about this project" opens, triangle link, old address redirects, no slides');
 
     // A reading-group page and the blank template
     await page.goto(base + '/toolkit.html'); await page.locator('[data-set-lang=en]').click();
     await page.locator('a[href="groups/filosofia-de-los-delirios.html"]').click(); await page.waitForURL(/filosofia-de-los-delirios\.html$/);
     assert.equal(await page.locator('.weeks > .week').count(), 10);
-    assert.equal(await page.locator('.readings li').count(), 21);
+    assert.equal(await page.locator('.weeks .readings li').count(), 21);
+    assert.equal((await page.locator('h1 span:visible').textContent()).replace(/\u00ad/g, ''), 'Philosophy of Delusions');
+    assert.equal(await page.locator('.week h3 span:visible').first().textContent(), 'The nature of delusions I');
     assert.equal(await page.locator('.nav a[aria-current="page"]').getAttribute('href'), '../toolkit.html');
     for (const pdf of ['silabo.pdf', 'bienvenida.pdf']) assert(fs.existsSync(path.join(root, 'groups/filosofia-de-los-delirios', pdf)));
+    assert(fs.existsSync(path.join(root, 'templates/latex-templates.zip')) && fs.existsSync(path.join(root, 'templates/latex/README.md')));
     await page.locator('[data-set-lang=es]').click();
     assert.equal(await page.locator('.week-n span:visible').first().textContent(), 'Semana 1');
+    assert.equal(await page.locator('.week h3 span:visible').first().textContent(), 'La naturaleza de los delirios I');
     await page.screenshot({ path: path.join(shots, 'group-1280.png'), fullPage: true });
     await page.goto(base + '/templates/course-or-group.html');
     assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex');
     assert(!fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8').includes('templates/'));
-    checks.push('Reading group: linked from the toolkit, 10 weeks, 21 readings, PDFs present; template is noindex and outside the sitemap');
+    checks.push('Reading group: linked from the toolkit, English and Spanish titles, 10 weeks, 21 readings, PDFs and LaTeX templates present; template is noindex and outside the sitemap');
 
     // Random plate on the 404 page
     await page.goto(base + '/no-such-page'); await page.locator('[data-set-lang=en]').click();

@@ -1,0 +1,117 @@
+% jcg-tufte.sty — Joselu Cabrera Guillermo's look for Tufte handouts
+% (syllabi, founding documents, session handouts). Use with the tufte-handout class
+% and compile with XeLaTeX or LuaLaTeX (it needs fontspec):
+%
+%   \documentclass[a4paper,nofonts,justified]{tufte-handout}
+%   \usepackage[spanish]{jcg-tufte}   % or [english]
+%
+% Same identity as https://joselu14.github.io: Alegreya for the text, IM Fell for titles,
+% indigo-black ink and one red (cochineal carmine) for links and status lines.
+% The fonts are in fonts/ next to this file, under the SIL Open Font License.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{jcg-tufte}[2026/11/14 Joselu Cabrera Guillermo, Tufte handout style]
+
+% ---------- options: document language ----------
+\newif\ifjcg@spanish \jcg@spanishfalse
+\DeclareOption{spanish}{\jcg@spanishtrue}
+\DeclareOption{english}{\jcg@spanishfalse}
+\ProcessOptions\relax
+
+% ---------- fonts ----------
+\RequirePackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Alegreya}[
+  Path = fonts/, Extension = .ttf,
+  UprightFont = *-Regular, ItalicFont = *-Italic,
+  BoldFont = *-Bold, BoldItalicFont = *-BoldItalic,
+  Numbers = OldStyle]
+% lining figures for tables, dates in columns and numbers that must line up
+\newfontfamily\jcglining{Alegreya}[
+  Path = fonts/, Extension = .ttf,
+  UprightFont = *-Regular, ItalicFont = *-Italic,
+  BoldFont = *-Bold, BoldItalicFont = *-BoldItalic,
+  Numbers = Lining]
+% IM Fell: French Canon for the title, Double Pica for headings (one weight only: never bold)
+\newfontfamily\fellcanon{IMFeFCrm28P}[Path = fonts/, Extension = .ttf, ItalicFont = IMFeFCit28P]
+\newfontfamily\fellpica{IMFELLDoublePica-Regular}[Path = fonts/, Extension = .ttf, ItalicFont = IMFELLDoublePica-Italic]
+
+% ---------- language ----------
+\RequirePackage{polyglossia}
+\ifjcg@spanish
+  \setdefaultlanguage[spanishoperators=all]{spanish}
+  \setotherlanguage{english}
+\else
+  \setdefaultlanguage{english}
+  \setotherlanguage{spanish}
+\fi
+\RequirePackage{csquotes}
+
+% ---------- colour ----------
+\RequirePackage{xcolor}
+\definecolor{jcgink}{HTML}{1B2036}     % indigo-black ink
+\definecolor{jcgink2}{HTML}{4B5165}    % secondary text
+\definecolor{jcgcarmine}{HTML}{A3173F} % cochineal: the one accent
+\definecolor{jcgrule}{HTML}{C3C7C0}    % hairlines
+\definecolor{jcgcacao}{HTML}{3B2119}   % the band at the foot of the posters
+\AtBeginDocument{\color{jcgink}}
+\hypersetup{colorlinks=true, linkcolor=jcgcarmine, urlcolor=jcgcarmine, citecolor=jcgcarmine}
+
+% ---------- citations: author-year in round brackets, as philosophers expect ----------
+\AtBeginDocument{\setcitestyle{round,aysep={,},yysep={,}}}
+
+% ---------- headings: IM Fell Double Pica, upright, never bold ----------
+\titleformat{\section}{\fellpica\Large\color{jcgink}}{}{0pt}{}
+\titleformat{\subsection}{\fellpica\large\color{jcgink}}{}{0pt}{}
+\titleformat{\paragraph}[runin]{\itshape\color{jcgink}}{}{0pt}{}[.]
+\titlespacing*{\section}{0pt}{2.2ex plus 0.6ex minus 0.4ex}{0.8ex}
+\titlespacing*{\subsection}{0pt}{1.8ex plus 0.5ex minus 0.3ex}{0.5ex}
+
+% ---------- title block ----------
+% \title{...} \author{...} \date{...} and, optionally, \subtitle{...} and \status{...}
+\newcommand{\jcg@subtitle}{}
+\newcommand{\subtitle}[1]{\renewcommand{\jcg@subtitle}{#1}}
+\newcommand{\jcg@status}{}
+\newcommand{\status}[1]{\renewcommand{\jcg@status}{#1}}
+\renewcommand{\maketitle}{%
+  \newpage\global\@topnum\z@
+  \begin{fullwidth}\setlength{\parindent}{0pt}%
+    \ifx\jcg@status\@empty\else{\itshape\color{jcgcarmine}\jcg@status}\par\vspace{0.6ex}\fi
+    {\fellcanon\fontsize{30}{32}\selectfont\@title\par}%
+    \ifx\jcg@subtitle\@empty\else\vspace{0.8ex}{\large\itshape\color{jcgink2}\jcg@subtitle\par}\fi
+    \vspace{1.2ex}%
+    {\itshape\color{jcgink2}\@author\par}%
+    {\itshape\color{jcgink2}\@date\par}%
+  \end{fullwidth}%
+  \vspace{2.5ex}%
+  \thispagestyle{plain}}
+
+\RequirePackage{enumitem}
+\setlist{nosep}
+\RequirePackage{booktabs}
+
+% ---------- small building blocks ----------
+% A status line in carmine italic, as on the website: \statusline{En desarrollo}
+\newcommand{\statusline}[1]{{\itshape\color{jcgcarmine}#1}\par}
+% Facts about a course or group, set as an italic label and its value:
+%   \begin{facts} \fact{Organiza}{Jose Luis Cabrera Guillermo} ... \end{facts}
+\newenvironment{facts}{\par\smallskip\begin{list}{}{%
+  \setlength{\leftmargin}{8.5em}\setlength{\labelwidth}{8em}\setlength{\labelsep}{0.5em}%
+  \setlength{\itemsep}{0.15ex}\setlength{\parsep}{0pt}\setlength{\topsep}{0pt}%
+  \renewcommand{\makelabel}[1]{\itshape\color{jcgink2}##1\hfill}}}{\end{list}\smallskip}
+\newcommand{\fact}[2]{\item[#1]#2}
+% Rules of the game: \item[Term] explanation (the term is set in bold, followed by a colon)
+\newcommand{\jcg@rulelabel}[1]{\normalfont\bfseries #1:}
+\newenvironment{rules}{\begin{description}[style=standard, leftmargin=1.2em, labelindent=0pt, format=\jcg@rulelabel, itemsep=0.5ex, topsep=0.6ex]}{\end{description}\medskip}
+% One session of a syllabus:
+%   \session{1}{La naturaleza de los delirios I}{12 de enero}{Dirige: por decidir}
+% The number and the date go in the margin; the readings follow in a \begin{readings} list.
+\newcommand{\session}[4]{%
+  \subsection{#2}%
+  \noindent\leavevmode\marginnote[-1.25\baselineskip]{{\color{jcgink2}\itshape\ifjcg@spanish Semana\else Week\fi~#1}%
+    \if\relax\detokenize{#3}\relax\else\\{\color{jcgink2}#3}\fi
+    \if\relax\detokenize{#4}\relax\else\\{\color{jcgink2}#4}\fi}\ignorespaces}
+\newenvironment{readings}{\begin{enumerate}[label=\arabic*., leftmargin=1.6em, itemsep=0.2ex, topsep=0.4ex]}{\end{enumerate}}
+% A reading: \reading{Author(s)}{Year}{Title}{URL or empty}
+\newcommand{\reading}[4]{\item #1 (#2). \if\relax\detokenize{#4}\relax\emph{#3}\else\href{#4}{\emph{#3}}\fi.}
+
+\endinput

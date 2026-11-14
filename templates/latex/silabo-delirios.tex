@@ -1,0 +1,107 @@
+% Sílabo de un grupo de estudio (plantilla con un ejemplo real: Filosofía de los delirios, CIFA, 2026).
+% Compilar con XeLaTeX:  latexmk -xelatex silabo-delirios.tex
+% En Overleaf: Menu > Compiler > XeLaTeX. Sube también jcg-tufte.sty y la carpeta fonts/.
+\documentclass[a4paper,nofonts,justified]{tufte-handout}
+\usepackage[spanish]{jcg-tufte}
+
+\title{Filosofía de los delirios}
+\subtitle{Grupo de estudio del Círculo de Investigación en Filosofía Analítica (CIFA), PUCP}
+\author{Jose Luis Cabrera Guillermo}
+\date{Enero de 2026}
+\status{Sílabo}
+
+\begin{document}
+\maketitle
+
+\begin{facts}
+  \fact{Organiza}{Jose Luis Cabrera Guillermo, con el CIFA}
+  \fact{Inicio}{Semana del 12 de enero de 2026}
+  \fact{Duración}{10 semanas; una sesión por semana, de 1 a 2 horas}
+  \fact{Modalidad}{Virtual}
+  \fact{Lectura}{Unas 40 páginas por semana}
+  \fact{Contacto}{\href{mailto:jlcabrerag@pucp.edu.pe}{jlcabrerag@pucp.edu.pe}, \href{mailto:cifa.filosofia@gmail.com}{cifa.filosofia@gmail.com}}
+\end{facts}
+
+\section{Objetivo}
+El grupo pretende desarrollar una introducción intensiva a la literatura de filosofía de la psicología y psiquiatría sobre qué son los delirios, cómo se forman, cuál es su relación con otros estados mentales típicos (deseos, creencias, episodios imaginativos, experiencia perceptual) y su estatus normativo: ¿son los delirios susceptibles de evaluación epistémica?, ¿son irracionales?, ¿en qué sentido son \emph{malos}?, ¿son acaso en algún sentido \emph{malos}?
+
+\section{Dinámica}
+Durante diez semanas leeremos artículos que defienden tesis sobre (1)~la naturaleza de los delirios, (2)~las condiciones de su formación y (3)~su estatus epistémico. Nos reuniremos una vez a la semana para discutir dos textos. Cada sesión la lideran dos miembros del grupo, que elaboran separatas sobre los textos y plantean preguntas para iniciar la discusión.\marginnote{Las separatas pueden hacerse con la plantilla \texttt{separata-bienvenida.tex}.}
+
+\section{Literatura base}
+Los textos obligatorios están listados por semana. Como texto de consulta general usaremos la entrada \href{https://plato.stanford.edu/entries/delusion/}{\emph{Delusion}} de la \emph{Stanford Encyclopedia of Philosophy}, escrita por Lisa Bortolotti, y la definición de delirio del \emph{Diagnostic and Statistical Manual of Mental Disorders} (DSM-5) de la American Psychiatric Association.\marginnote{American Psychiatric Association (2013). \emph{Diagnostic and Statistical Manual of Mental Disorders}, 5.ª ed. (DSM-5). Arlington, VA: American Psychiatric Association.} Buena parte de los textos que leeremos son literatura que Bortolotti cita en esa entrada.
+
+\section{Cronograma}
+
+\session{1}{La naturaleza de los delirios I}{}{Dirige: por decidir}
+Discutiremos las aproximaciones imaginativas y el \emph{doxasticism} (los delirios como creencias).
+\begin{readings}
+  \reading{Gregory Currie}{2000}{Imagination, delusion and hallucinations}{https://psycnet.apa.org/record/2000-07411-006}
+  \reading{Keith Frankish}{2009}{Delusions: A two-level framework}{https://edwebcontent.ed.ac.uk/sites/default/files/atoms/files/frankish-1.pdf}
+\end{readings}
+
+\session{2}{La naturaleza de los delirios II}{}{Dirige: por decidir}
+Discutiremos las aproximaciones perceptuales e \emph{in-betweenish} (los delirios como estados mentales intermedios).
+\begin{readings}
+  \reading{Jakob Hohwy y Vivek Rajan}{2012}{Delusions as Forensically Disturbing Perceptual Inferences}{https://philarchive.org/rec/HOHDAF}
+  \reading{Andy Egan}{2008}{Imagination, delusion and self-deception}{https://philpapers.org/rec/EGAIDA}
+\end{readings}
+
+\session{3}{La naturaleza de los delirios III}{}{Dirige: por decidir}
+Discutiremos la defensa más completa del \emph{doxasticism}, hecha por Bortolotti, y la aproximación clínico-fenomenológica.
+\begin{readings}
+  \reading{Lisa Bortolotti}{2012}{In Defence of Modest Doxasticism About Delusions}{https://pmc.ncbi.nlm.nih.gov/articles/PMC3319902/}
+  \reading{Jasper Feyaerts, Mads G. Henriksen, Stijn Vanheule, Inez Myin-Germeys y Louis A. Sass}{2021}{Delusions beyond beliefs: a critical overview of diagnostic, aetiological, and therapeutic schizophrenia research from a clinical-phenomenological perspective}{https://pubmed.ncbi.nlm.nih.gov/33485408/}
+\end{readings}
+
+\session{4}{Explicando los delirios I: modelos clásicos}{}{Dirige: por decidir}
+Discutiremos modelos cognitivos clásicos de la formación de delirios. La pregunta que pretenden responder es: ¿qué tiene que salir \emph{mal} para que un delirio se forme?
+\begin{readings}
+  \reading{Max Coltheart, Robyn Langdon y Ryan McKay}{2011}{Delusional Belief}{https://pubmed.ncbi.nlm.nih.gov/20731601/}
+  \reading{Brendan A. Maher}{2005}{Delusional Thinking and Cognitive Disorder}{https://pubmed.ncbi.nlm.nih.gov/17477206/}
+\end{readings}
+
+\session{5}{Explicando los delirios II: inferencias y \emph{predictive coding}}{}{Dirige: por decidir}
+Discutiremos la aproximación bayesiana de \emph{predictive coding}, según la cual los delirios resultan de una falla en la forma en que nuestras creencias codifican información sensorial, y el papel de las inferencias en la formación de delirios.
+\begin{readings}
+  \reading{Ryan McKay}{2012}{Delusional Inference}{https://psycnet.apa.org/record/2012-14781-006}
+  \reading{Philipp Sterzer, Rick A. Adams, Paul Fletcher, Chris Frith, Stephen M. Lawrie, Lars Muckli, Predrag Petrovic, Peter Uhlhaas, Martin Voss y Philip R. Corlett}{2018}{The Predictive Coding Account of Psychosis}{https://www.biologicalpsychiatryjournal.com/article/S0006-3223(18)31532-4/fulltext}
+\end{readings}
+
+\session{6}{Delirios y patología I}{}{Dirige: por decidir}
+Discutiremos la postura de McKay y Dennett sobre el lugar de los delirios y otros malfuncionamientos doxásticos en la evolución, y la tesis de Miyazono de que los delirios son patológicos.
+\begin{readings}
+  \reading{Ryan T. McKay y Daniel C. Dennett}{2009}{The evolution of misbelief}{https://pubmed.ncbi.nlm.nih.gov/20105353/}
+  \reading{Kengo Miyazono}{2015}{Delusions as Harmful Malfunctioning Beliefs}{https://pubmed.ncbi.nlm.nih.gov/25467777/}
+\end{readings}
+
+\session{7}{Delirios y patología II}{}{Dirige: por decidir}
+Discutiremos la distinción de Sullivan-Bissett entre mal-funcionamiento y mis-funcionamiento, y la crítica de Bortolotti al intento de Miyazono de clasificar los delirios como creencias patológicas.
+\begin{readings}
+  \reading{Lisa Bortolotti}{2022}{Are delusions pathological beliefs?}{https://link.springer.com/article/10.1007/s44204-022-00033-3}
+  \reading{Ema Sullivan-Bissett}{2024}{Monothematic delusions are misfunctioning beliefs}{https://philarchive.org/rec/SULMDA-6}
+\end{readings}
+
+\session{8}{Epistemología de los delirios: inocencia epistémica I}{}{Dirige: por decidir}
+Nos introduciremos al proyecto de \emph{inocencia epistémica} de Lisa Bortolotti: argumentar que ciertos estados mentales típicamente considerados irracionales, como los delirios, no son en realidad epistémicamente malos. La lectura 1 es obligatoria; como segunda lectura se puede escoger entre la 2 y la 3.
+\begin{readings}
+  \reading{Lisa Bortolotti}{2016}{Epistemic Benefits of Elaborated and Systematized Delusions in Schizophrenia}{https://www.journals.uchicago.edu/doi/full/10.1093/bjps/axv024}
+  \reading{Lisa Bortolotti}{2015}{The Epistemic Innocence of Motivated Delusions}{https://pubmed.ncbi.nlm.nih.gov/25459652/}
+  \reading{Lisa Bortolotti}{2017}{Stranger than Fiction: Costs and Benefits of Everyday Confabulation}{https://pmc.ncbi.nlm.nih.gov/articles/PMC5986841/}
+\end{readings}
+
+\session{9}{Epistemología de los delirios: inocencia epistémica II}{}{Dirige: por decidir}
+Revisaremos dos críticas al proyecto de la inocencia epistémica.
+\begin{readings}
+  \reading{Andrew D. Spear}{2018}{Gaslighting, Confabulation, and Epistemic Innocence}{https://link.springer.com/article/10.1007/s11245-018-9611-z}
+  \reading{Maja Białek}{2024}{The Epistemic Innocence of Elaborated Delusions Re-examined}{https://link.springer.com/article/10.1007/s13164-023-00675-z}
+\end{readings}
+
+\session{10}{Epistemología de los delirios: nuevos horizontes}{}{Dirige: por decidir}
+Discutiremos literatura reciente que propone un giro en la epistemología de los delirios: la crítica de Salice y Miyazono al sesgo individualista de esta literatura y su propuesta de pasar a la epistemología social, y la hipótesis de Carolina Flores según la cual los delirios son producto de \emph{estilos epistémicos} particulares.
+\begin{readings}
+  \reading{Alessandro Salice y Kengo Miyazono}{2020}{Social epistemological conception of delusion}{https://link.springer.com/article/10.1007/s11229-020-02863-1}
+  \reading{Carolina Flores}{2025}{Delusions and epistemic style: a neurodiversity approach to reasoning in schizophrenia}{https://link.springer.com/article/10.1007/s11229-025-04979-8}
+\end{readings}
+
+\end{document}

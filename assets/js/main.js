@@ -170,7 +170,7 @@
       who: { en: "Robert Fludd, Utriusque Cosmi … Historia, Oppenheim, 1617–21", es: "Robert Fludd, Utriusque Cosmi … Historia, Oppenheim, 1617–21" },
       alt: { en: "Engraving of a head in profile with an eye projecting images onto a screen", es: "Grabado de una cabeza de perfil con un ojo que proyecta imágenes sobre una pantalla" } },
     { id: "guaman-poma", tint: "ochre", src: "assets/img/plates/guaman-poma-contador.png", size: [407, 584],
-      title: { en: "Contador mayor y tesorero: a khipu keeper with a yupana", es: "Contador mayor y tesorero: un quipucamayoc con su yupana" },
+      title: { en: "Contador mayor y tesorero (Chief accountant and treasurer): a khipu keeper with a yupana", es: "Contador mayor y tesorero: un quipucamayoc con su yupana" },
       who: { en: "Felipe Guaman Poma de Ayala, El primer nueva corónica y buen gobierno, c. 1615, p. 360", es: "Felipe Guaman Poma de Ayala, El primer nueva corónica y buen gobierno, c. 1615, p. 360" },
       alt: { en: "Drawing of an Andean accountant holding a knotted-cord khipu, with a counting board below", es: "Dibujo de un contador andino que sostiene un quipu, con un tablero de cálculo abajo" } },
     { id: "cardsharps", src: "assets/img/plates/caravaggio-cardsharps.jpg", size: [1280, 921],

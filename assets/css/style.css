@@ -330,6 +330,7 @@ details.more[open] summary { margin-bottom: 8px; }
 .week h3 { margin: 0 0 0.35em; }
 .week p { margin: 0 0 0.6em; }
 .readings { list-style: none; padding: 0; margin: 0; }
+.readings.refs { max-width: var(--measure); margin: 0 0 1em; }
 main .readings li { padding-left: 1.4em; text-indent: -1.4em; margin: 0 0 0.3em; text-align: left; -webkit-hyphens: none; hyphens: none; }
 @media (max-width: 620px) {
   .facts > div { grid-template-columns: 7rem minmax(0, 1fr); }

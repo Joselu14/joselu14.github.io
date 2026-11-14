@@ -13,6 +13,7 @@ Plain HTML + CSS + a little JavaScript: no build step, no frameworks. GitHub Pag
 | `teaching.html` | Old address; redirects to `toolkit.html` |
 | `groups/`, `courses/` | One page per reading group or course (e.g. `groups/filosofia-de-los-delirios.html`), with its PDFs in a folder of the same name |
 | `templates/course-or-group.html` | Blank page for a new course or reading group (not indexed by search engines) |
+| `templates/latex/`, `templates/latex-templates.zip` | The LaTeX templates for syllabi and handouts (compile with XeLaTeX; instructions in `templates/latex/README.md`). The zip is what visitors download from the toolkit page: rebuild it whenever the folder changes |
 | `visual.html` | Visual work: photography and posters, with filters and a lightbox |
 | `cv.html` | CV with Print / save PDF action |
 | `credits.html` | Author, date, source and licence of every image |
@@ -56,7 +57,7 @@ Export images at about 1600 px on the long side (JPG, quality ~80) so the site s
 1. Copy `templates/course-or-group.html` to `courses/NAME.html` or `groups/NAME.html` (lowercase, hyphens, no accents).
 2. Replace everything highlighted in yellow and delete the sections you don't need. Titles of readings stay in their original language.
 3. Delete the line `<meta name="robots" content="noindex">` in the `<head>`, and change the `canonical` and `og:url` addresses to the new page.
-4. Make the syllabus and handouts with the LaTeX templates (`silabo` and `separata`), and put the PDFs in a folder named like the page (`groups/NAME/`).
+4. Make the syllabus and handouts with the LaTeX templates in `templates/latex/`, and put the PDFs in a folder named like the page (`groups/NAME/`). If the documents are in only one language, say so on the page in the other one.
 5. In `toolkit.html`, under *Courses and reading groups*, copy the entry for *Filosofía de los delirios* and link it to the new page. Add the page to `sitemap.xml`.
 
 **Image policy.** Images on the pages are either historical images in the public domain (or CC0), each credited
