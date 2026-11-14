@@ -34,7 +34,7 @@ const server = http.createServer((req, res) => {
       if (route.request().resourceType() !== 'document') external.push(u);
       return route.abort();
     });
-    const pages = ['index.html', 'research.html', 'toolkit.html', 'groups/filosofia-de-los-delirios.html', 'templates/course-or-group.html', 'visual.html', 'cv.html', 'credits.html', '404.html'];
+    const pages = ['index.html', 'research.html', 'attention.html', 'toolkit.html', 'groups/filosofia-de-los-delirios.html', 'templates/course-or-group.html', 'visual.html', 'cv.html', 'credits.html', '404.html'];
     let combos = 0;
     for (const file of pages) {
       await page.goto(base + '/' + file); await page.waitForLoadState('load');
@@ -96,6 +96,27 @@ const server = http.createServer((req, res) => {
     assert.equal(fs.existsSync(path.join(root, 'assets/docs')), false);
     await page.goto(base + '/teaching.html'); await page.waitForURL(/toolkit\.html$/);
     checks.push('Toolkit: six entries, "More about this project" opens, triangle link, old address redirects, no slides');
+
+    // The attention model
+    await page.goto(base + '/research.html'); await page.locator('[data-set-lang=en]').click();
+    await page.locator('#inquiry a[href="attention.html"]:visible').click(); await page.waitForURL(/attention\.html$/);
+    const nums = async () => (await page.locator('.att-row-num').allTextContents()).map(t => t.replace(/\s+/g, ' '));
+    assert.deepEqual(await nums(), ['0.80 → 0.95', '0.15 → 0.03']);
+    assert.deepEqual(await page.locator('.att-agent').first().locator('.att-num').allTextContents(), ['0.80', '1.00']);
+    assert.match(await page.locator('#att-verdict').textContent(), /^They polarize/);
+    await page.locator('[data-scen=clash-enthusiastic]').click();
+    assert.deepEqual(await nums(), ['0.70 → 0.90', '0.30 → 0.10']);
+    assert.match(await page.locator('#att-all').textContent(), /0\.50 and Joseph at 0\.50/);
+    await page.locator('[data-scen=same-beliefs]').click();
+    assert.deepEqual(await nums(), ['0.85 → 0.60', '0.85 → 0.85']);
+    await page.locator('.att-agent').nth(1).locator('summary').first().click();
+    await page.locator('#att-1-S').fill('0.4');
+    const sums = await page.evaluate(() => [...document.querySelectorAll('.att-agent')].map(a => [...a.querySelectorAll('.att-table tbody tr')].reduce((t, r) => t + Number(r.children[4].textContent), 0)));
+    sums.forEach(v => assert(Math.abs(v - 1) < 0.01, 'truth table adds up to 1'));
+    await page.locator('[data-set-lang=es]').click();
+    assert.match(await page.locator('#att-verdict').textContent(), /^Se acercan/);
+    await page.locator('[data-set-lang=en]').click();
+    checks.push('Attention model: linked from Research; the paper’s numbers (saliences 0.80/1.00, credences 0.80→0.95 and 0.15→0.03); enthusiastic and Lockean scenarios; sliders keep the tables coherent; Spanish verdicts');
 
     // A reading-group page and the blank template
     await page.goto(base + '/toolkit.html'); await page.locator('[data-set-lang=en]').click();

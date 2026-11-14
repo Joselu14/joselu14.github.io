@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-title-en="Same evidence, different attention — Joselu Cabrera Guillermo" data-title-es="La misma evidencia, distinta atención — Joselu Cabrera Guillermo">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Same evidence, different attention — Joselu Cabrera Guillermo</title>
+  <meta name="description" content="An interactive model by Joselu Cabrera Guillermo: two Bayesian agents face the same evidence but attend to different parts of it, and polarize. Dogmatic and enthusiastic attention policies, with a Lockean threshold.">
+  <meta name="author" content="Joselu Cabrera Guillermo">
+  <!-- Link previews (WhatsApp, Slack, social media) and search engines -->
+  <link rel="canonical" href="https://joselu14.github.io/attention.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Joselu Cabrera Guillermo">
+  <meta property="og:title" content="Same evidence, different attention — Joselu Cabrera Guillermo">
+  <meta property="og:description" content="An interactive model by Joselu Cabrera Guillermo: two Bayesian agents face the same evidence but attend to different parts of it, and polarize. Dogmatic and enthusiastic attention policies, with a Lockean threshold.">
+  <meta property="og:url" content="https://joselu14.github.io/attention.html">
+  <meta property="og:image" content="https://joselu14.github.io/assets/img/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Joselu Cabrera Guillermo, PhD student in Philosophy at Duke University, beside an arithmetic triangle drawn in type">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="es_PE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#e9ebe6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#141826" media="(prefers-color-scheme: dark)">
+  <!-- /Link previews -->
+  <!-- Set language and theme before the page paints (remembers the visitor's choice). -->
+  <script>
+    (function () {
+      var d = document.documentElement, l, t;
+      try { l = localStorage.getItem("lang"); t = localStorage.getItem("theme"); } catch (e) {}
+      if (!l) l = ((navigator.languages && navigator.languages[0]) || navigator.language || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+      d.setAttribute("data-lang", l); d.lang = l;
+      if (t) d.setAttribute("data-theme", t);
+    })();
+  </script>
+  <link rel="preload" href="assets/fonts/alegreya-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip" href="#main"><span lang="en">Skip to content</span><span lang="es">Ir al contenido</span></a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">Joselu Cabrera Guillermo</a>
+      <nav class="nav" aria-label="Main / Principal">
+        <a href="index.html"><span lang="en">About</span><span lang="es">Inicio</span></a>
+        <a href="research.html" aria-current="page"><span lang="en">Research</span><span lang="es">Investigación</span></a>
+        <a href="toolkit.html"><span lang="en">Philosopher’s toolkit</span><span lang="es">Herramientas</span></a>
+        <a href="visual.html"><span lang="en">Visual work</span><span lang="es">Obra visual</span></a>
+        <a href="cv.html">CV</a>
+      </nav>
+      <div class="tools">
+        <div class="seg" role="group" aria-label="Language / Idioma">
+          <button type="button" data-set-lang="en" aria-pressed="true">English</button>
+          <button type="button" data-set-lang="es" aria-pressed="false">Español</button>
+        </div>
+        <button type="button" class="icon-btn" id="theme-toggle" aria-label="Switch light or dark mode"
+                data-label-en="Switch light or dark mode" data-label-es="Cambiar a modo claro u oscuro"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="7.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 2.75a7.25 7.25 0 0 1 0 14.5z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="wrap page-head">
+      <p class="crumb"><a href="research.html#inquiry"><span lang="en">Research</span><span lang="es">Investigación</span></a></p>
+      <h1><span lang="en">Same evidence, different attention</span><span lang="es">La misma evidencia, distinta atención</span></h1>
+      <p lang="en">Two agents face the same evidence, and both update their credences by Bayes’ rule. What differs is what they attend to. Pick a scenario and move the controls: when do they polarize, and when do they agree?</p><p lang="es">Dos agentes enfrentan la misma evidencia y ambos actualizan sus grados de creencia con la regla de Bayes. Lo que cambia es aquello a lo que atienden. Elige un escenario y mueve los controles: ¿cuándo se polarizan y cuándo llegan a un acuerdo?</p>
+    </header>
+
+    <section class="wrap att" id="att" aria-label="Interactive model / Modelo interactivo">
+      <div class="att-controls">
+        <div class="att-ctl">
+          <p class="att-label" id="att-scen-l"><span lang="en">Scenario</span><span lang="es">Escenario</span></p>
+          <div class="filters att-choice" role="group" aria-labelledby="att-scen-l">
+            <button type="button" data-scen="clash-dogmatic" aria-pressed="true"><span lang="en">Ideology clash: dogmatic agents</span><span lang="es">Choque ideológico: agentes dogmáticos</span></button>
+            <button type="button" data-scen="clash-enthusiastic" aria-pressed="false"><span lang="en">Ideology clash: enthusiastic agents</span><span lang="es">Choque ideológico: agentes entusiastas</span></button>
+            <button type="button" data-scen="same-beliefs" aria-pressed="false"><span lang="en">Same beliefs, different reactions</span><span lang="es">Mismas creencias, distintas reacciones</span></button>
+          </div>
+          <p class="att-note" data-scen-note="clash-dogmatic"><span lang="en">From my paper. Ana favours capitalism and Joseph opposes it. A third party shows them evidence that cuts both ways. Both are dogmatic: whatever threatens their core attitude loses salience.</span><span lang="es">De mi artículo. Ana está a favor del capitalismo y Joseph en contra. Un tercero les muestra evidencia que apunta en ambas direcciones. Ambos son dogmáticos: lo que amenaza su actitud nuclear pierde prominencia.</span></p>
+          <p class="att-note" data-scen-note="clash-enthusiastic" hidden><span lang="en">The same story with enthusiastic agents: each attends to the evidence that, by their own lights, bears most on whether capitalism should rule.</span><span lang="es">La misma historia con agentes entusiastas: cada uno atiende a la evidencia que, a su juicio, más incide en si el capitalismo debería regir.</span></p>
+          <p class="att-note" data-scen-note="same-beliefs" hidden><span lang="en">Ana and Lucía believe the same things: that capitalism should rule, and that their political views are better than the majority’s. Only H is on the table. Their credences differ, and so do their reactions.</span><span lang="es">Ana y Lucía creen lo mismo: que el capitalismo debería regir y que sus ideas políticas son mejores que las de la mayoría. Solo H está sobre la mesa. Sus grados de creencia difieren, y también sus reacciones.</span></p>
+          <button type="button" class="again" id="att-reset"><span lang="en">Back to the scenario’s values</span><span lang="es">Volver a los valores del escenario</span></button>
+        </div>
+        <div class="att-ctl">
+          <p class="att-label" id="att-pol-l"><span lang="en">Attention policy</span><span lang="es">Política atencional</span></p>
+          <div class="filters att-choice" role="group" aria-labelledby="att-pol-l">
+            <button type="button" data-policy="dogmatic" aria-pressed="true"><span lang="en">Dogmatic</span><span lang="es">Dogmática</span></button>
+            <button type="button" data-policy="enthusiastic" aria-pressed="false"><span lang="en">Enthusiastic</span><span lang="es">Entusiasta</span></button>
+          </div>
+          <p class="att-note" data-policy-note="dogmatic"><span lang="en">Evidence loses salience in proportion to how much it would lower the agent’s credence in their core attitude P.</span><span lang="es">La evidencia pierde prominencia en proporción a cuánto bajaría el grado de creencia del agente en su actitud nuclear P.</span></p>
+          <p class="att-note" data-policy-note="enthusiastic" hidden><span lang="en">Evidence is salient in proportion to how much it bears on whether S. Inspired by Jessie Munton’s norm on attention.</span><span lang="es">La evidencia es prominente en proporción a cuánto incide en si S. Inspirada en la norma de Jessie Munton sobre la atención.</span></p>
+        </div>
+        <div class="att-ctl">
+          <p class="att-label"><span lang="en">Evidence on the table</span><span lang="es">Evidencia sobre la mesa</span></p>
+          <label class="att-check"><input type="checkbox" id="att-ev-H" checked> <b>H</b>&#8194;<span lang="en">Capitalism has led to horrendous social consequences.</span><span lang="es">El capitalismo ha tenido consecuencias sociales horrendas.</span></label>
+          <label class="att-check"><input type="checkbox" id="att-ev-V" checked> <b>V</b>&#8194;<span lang="en">Capitalism has led to valuable social consequences.</span><span lang="es">El capitalismo ha tenido consecuencias sociales valiosas.</span></label>
+          <p class="att-key"><b>S</b>&#8194;<span lang="en">Capitalism should rule our societies.</span><span lang="es">El capitalismo debería regir nuestras sociedades.</span><br><b>P</b>&#8194;<span lang="en">Each agent’s core attitude: “My political views are better than the majority’s.”</span><span lang="es">La actitud nuclear de cada agente: “Mis ideas políticas son mejores que las de la mayoría”.</span></p>
+        </div>
+        <div class="att-ctl">
+          <p class="att-label"><span lang="en">Thresholds, the same for both</span><span lang="es">Umbrales, los mismos para ambos</span></p>
+          <div class="att-slider"><label for="att-a"><span lang="en">Attention, <i>a</i></span><span lang="es">Atención, <i>a</i></span></label><input type="range" id="att-a" min="0" max="1" step="0.01" value="0.65"><output id="att-a-out" for="att-a"></output></div>
+          <div class="att-slider"><label for="att-l"><span lang="en">Lockean, <i>l</i></span><span lang="es">Lockeano, <i>l</i></span></label><input type="range" id="att-l" min="0.51" max="1" step="0.01" value="0.75"><output id="att-l-out" for="att-l"></output></div>
+        </div>
+      </div>
+
+      <div class="att-outcome">
+        <p class="att-label"><span lang="en">Credence that S, before and after</span><span lang="es">Grado de creencia en S, antes y después</span></p>
+        <div class="att-scale">
+          <div class="att-row">
+            <span class="att-row-name"></span>
+            <span class="att-track" aria-hidden="true"><span class="att-arrow"></span><span class="mk all"></span><span class="mk before"></span><span class="mk after"></span></span>
+            <span class="att-row-num"></span>
+          </div>
+          <div class="att-row">
+            <span class="att-row-name"></span>
+            <span class="att-track" aria-hidden="true"><span class="att-arrow"></span><span class="mk all"></span><span class="mk before"></span><span class="mk after"></span></span>
+            <span class="att-row-num"></span>
+          </div>
+          <div class="att-axis" aria-hidden="true"><span></span><span class="att-zones"><span><span lang="en">believes not-S</span><span lang="es">cree que no-S</span></span><span><span lang="en">suspends</span><span lang="es">suspende</span></span><span><span lang="en">believes S</span><span lang="es">cree que S</span></span></span><span></span></div>
+        </div>
+        <p class="att-legend" aria-hidden="true"><span class="att-li"><span class="mk before"></span><span lang="en">before</span><span lang="es">antes</span></span><span class="att-li"><span class="mk after"></span><span lang="en">after attending</span><span lang="es">después de atender</span></span><span class="att-li"><span class="mk all"></span><span lang="en">after attending to all the evidence</span><span lang="es">si atendiera a toda la evidencia</span></span></p>
+        <p id="att-verdict" class="att-verdict" aria-live="polite"></p>
+        <p id="att-all" class="att-all"></p>
+      </div>
+
+      <div class="att-agents">
+        <article class="att-agent">
+          <h3 class="att-name">Ana</h3>
+          <p class="att-label"><span lang="en">Salience of the evidence</span><span lang="es">Prominencia de la evidencia</span></p>
+          <div class="att-sals"></div>
+          <p class="att-says"></p>
+          <dl class="att-cr"></dl>
+          <details class="att-adjust">
+            <summary><span lang="en">Adjust <span class="att-name"></span>’s credences</span><span lang="es">Ajustar los grados de creencia de <span class="att-name"></span></span></summary>
+            <div class="att-body"></div>
+          </details>
+          <details class="att-tt">
+            <summary><span lang="en"><span class="att-name"></span>’s stochastic truth table</span><span lang="es">Tabla de verdad estocástica de <span class="att-name"></span></span></summary>
+            <p class="att-tt-note"><span lang="en">Before (cr<sub>t</sub>) and after attending and updating (cr<sub>t+1</sub>). Struck-out rows are the ones the evidence rules out.</span><span lang="es">Antes (cr<sub>t</sub>) y después de atender y actualizar (cr<sub>t+1</sub>). Las filas tachadas son las que la evidencia descarta.</span></p>
+            <table class="att-table"><thead></thead><tbody></tbody></table>
+          </details>
+        </article>
+        <article class="att-agent">
+          <h3 class="att-name">Joseph</h3>
+          <p class="att-label"><span lang="en">Salience of the evidence</span><span lang="es">Prominencia de la evidencia</span></p>
+          <div class="att-sals"></div>
+          <p class="att-says"></p>
+          <dl class="att-cr"></dl>
+          <details class="att-adjust">
+            <summary><span lang="en">Adjust <span class="att-name"></span>’s credences</span><span lang="es">Ajustar los grados de creencia de <span class="att-name"></span></span></summary>
+            <div class="att-body"></div>
+          </details>
+          <details class="att-tt">
+            <summary><span lang="en"><span class="att-name"></span>’s stochastic truth table</span><span lang="es">Tabla de verdad estocástica de <span class="att-name"></span></span></summary>
+            <p class="att-tt-note"><span lang="en">Before (cr<sub>t</sub>) and after attending and updating (cr<sub>t+1</sub>). Struck-out rows are the ones the evidence rules out.</span><span lang="es">Antes (cr<sub>t</sub>) y después de atender y actualizar (cr<sub>t+1</sub>). Las filas tachadas son las que la evidencia descarta.</span></p>
+            <table class="att-table"><thead></thead><tbody></tbody></table>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap att-how" id="how">
+      <h2><span lang="en">How the model works</span><span lang="es">Cómo funciona el modelo</span></h2>
+      <p class="measure" lang="en">This is a small version of the model in my paper “The Bayesian and the Im&shy;mu&shy;nol&shy;o&shy;gist” and my talk “Not changing your mind” (RatioLog, 2025). Belief change has two stages: attention selects which of the available evidence gets processed, and then the agent updates on what was selected. The update is always Bayesian. The policies differ only in what they attend to.</p><p class="measure" lang="es">Es una versión pequeña del modelo de mi artículo “The Bayesian and the Im&shy;mu&shy;nol&shy;o&shy;gist” y de mi ponencia “Not changing your mind” (RatioLog, 2025). El cambio de creencias tiene dos etapas: la atención selecciona qué parte de la evidencia disponible se procesa, y luego el agente actualiza sobre lo seleccionado. La actualización siempre es bayesiana. Las políticas solo difieren en aquello a lo que se atiende.</p>
+
+      <h3><span lang="en">Credences and updating</span><span lang="es">Grados de creencia y actualización</span></h3>
+      <p class="measure" lang="en">Each agent’s credences are a stochastic truth table over four sentences: S, H, V and the agent’s core attitude P. Each of the 16 rows gets a number; none is negative, and together they add up to 1. The controls change the table only in ways that keep it a probability function. Updating is conditionalization on E, the conjunction of the evidence the agent attends to: the rows where E is false drop to 0, and the rest are rescaled to add up to 1.</p><p class="measure" lang="es">Los grados de creencia de cada agente son una tabla de verdad estocástica sobre cuatro oraciones: S, H, V y la actitud nuclear del agente, P. Cada una de las 16 filas recibe un número; ninguno es negativo y juntos suman 1. Los controles solo cambian la tabla de maneras que la mantienen como una función de probabilidad. Actualizar es condicionalizar sobre E, la conjunción de la evidencia a la que el agente atiende: las filas en que E es falsa pasan a 0 y el resto se reescala para sumar 1.</p>
+      <math display="block"><mrow><msub><mi>cr</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mrow><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><msub><mi>cr</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>∣</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mfrac><mrow><msub><mi>cr</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>∧</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mrow><mrow><msub><mi>cr</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mrow></mfrac></mrow></math>
+
+      <h3><span lang="en">Attention</span><span lang="es">Atención</span></h3>
+      <p class="measure" lang="en">Γ<sub>t</sub> is the evidence on the table. An attention policy gives each piece of it a salience between 0 and 1. The agent attends to the evidence at the top of the ranking, provided its salience is above the threshold <i>a</i>. Even with <i>a</i> = 0, then, an agent ignores evidence whose salience is 0.</p><p class="measure" lang="es">Γ<sub>t</sub> es la evidencia sobre la mesa. Una política atencional le asigna a cada pieza una prominencia entre 0 y 1. El agente atiende a la evidencia que encabeza el orden, siempre que su prominencia supere el umbral <i>a</i>. Así, incluso con <i>a</i> = 0, un agente ignora la evidencia cuya prominencia es 0.</p>
+      <math display="block"><mtable columnalign="left"><mtr><mtd><mrow><mi>E</mi><mo>∈</mo><msub><mi>A</mi><mi>t</mi></msub><mspace width="0.3em"/><mo>⟺</mo><mspace width="0.3em"/><msub><mi>Sal</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><munder><mi>max</mi><mrow><mi>E′</mi><mo>∈</mo><msub><mi>Γ</mi><mi>t</mi></msub></mrow></munder><msub><mi>Sal</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi>E′</mi><mo stretchy="false">)</mo></mrow></mrow></mtd></mtr><mtr><mtd><mrow><mspace width="3.2em"/><mo>∧</mo><msub><mi>Sal</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mo>&gt;</mo><mi>a</mi></mrow></mtd></mtr></mtable></math>
+
+      <h3><span lang="en">Dogmatic attention</span><span lang="es">Atención dogmática</span></h3>
+      <p class="measure" lang="en">A dogmatic agent is biased towards keeping doxastic change small, to protect their core attitudes C<sub>t</sub> (here only P, so <i>c</i> = 1). D<sub>t</sub> is how much a piece of evidence would lower the agent’s credence in a core attitude, and evidence loses salience in proportion to it; evidence that leaves it untouched or raises it keeps salience 1. This puts the “psychological immune system” that Man&shy;del&shy;baum proposes at the level of attention instead of updating.</p><p class="measure" lang="es">Un agente dogmático tiende a mantener pequeño el cambio doxástico, para proteger sus actitudes nucleares C<sub>t</sub> (aquí solo P, así que <i>c</i> = 1). D<sub>t</sub> es cuánto bajaría una pieza de evidencia el grado de creencia del agente en una actitud nuclear, y la evidencia pierde prominencia en proporción a eso; la que no la toca o la eleva conserva prominencia 1. Así, el “sistema inmune psicológico” que propone Man&shy;del&shy;baum opera en la atención y no en la actualización.</p>
+      <math display="block"><mrow><msub><mi>D</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><msub><mi>P</mi><mi>i</mi></msub><mo>,</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>max</mi><mrow><mo stretchy="false">(</mo><msub><mi>cr</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><msub><mi>P</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><mo>−</mo><msub><mi>cr</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><msub><mi>P</mi><mi>i</mi></msub><mo>∣</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></math><math display="block"><mrow><msub><mi>Sal</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>c</mi></mfrac><munder><mo>∑</mo><mrow><msub><mi>P</mi><mi>i</mi></msub><mo>∈</mo><msub><mi>C</mi><mi>t</mi></msub></mrow></munder><msub><mi>D</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><msub><mi>P</mi><mi>i</mi></msub><mo>,</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mrow></math>
+
+      <h3><span lang="en">Enthusiastic attention</span><span lang="es">Atención entusiasta</span></h3>
+      <p class="measure" lang="en">An enthusiastic agent wants to learn as much as possible about whether S. This policy is inspired by Jessie Munton’s norm on attention, to attend to maximally task-relevant information, without her second variable, the effort it takes to access the evidence. Relevance is measured with Kemeny and Oppenheim’s measure of factual support <i>R</i>, which is 1 when E entails S, −1 when E entails not-S, and 0 when E is irrelevant to S.</p><p class="measure" lang="es">Un agente entusiasta quiere aprender lo más posible sobre si S. Esta política se inspira en la norma de Jessie Munton sobre la atención, atender a la información más relevante para la tarea, sin su segunda variable, el esfuerzo que cuesta acceder a la evidencia. La relevancia se mide con la medida de apoyo fáctico <i>R</i> de Kemeny y Oppenheim, que vale 1 cuando E implica S, −1 cuando E implica no-S y 0 cuando E es irrelevante para S.</p>
+      <math display="block"><mrow><msub><mi>Sal</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mo stretchy="false" lspace="0" rspace="0">|</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false" lspace="0" rspace="0">|</mo></mrow></math><math display="block"><mrow><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mfrac><mrow><msub><mi>cr</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi>E</mi><mo>∣</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><mo>−</mo><msub><mi>cr</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi>E</mi><mo>∣</mo><mo>¬</mo><mi>S</mi><mo stretchy="false">)</mo></mrow></mrow><mrow><msub><mi>cr</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi>E</mi><mo>∣</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><mo>+</mo><msub><mi>cr</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi>E</mi><mo>∣</mo><mo>¬</mo><mi>S</mi><mo stretchy="false">)</mo></mrow></mrow></mfrac></mrow></math>
+
+      <h3><span lang="en">Full beliefs</span><span lang="es">Creencias plenas</span></h3>
+      <p class="measure" lang="en">Beliefs follow the Lockean thesis: an agent believes X when their credence in X is at least <i>l</i>, a threshold between 0.5 (excluded) and 1. On the scale above, the shaded ends are the credences high enough to believe S or to believe not-S.</p><p class="measure" lang="es">Las creencias siguen la tesis lockeana: un agente cree X cuando su grado de creencia en X es al menos <i>l</i>, un umbral mayor que 0.5 y no mayor que 1. En la escala de arriba, los extremos sombreados son los grados de creencia suficientes para creer S o para creer no-S.</p>
+      <math display="block"><mrow><msub><mi>B</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mn>1</mn><mspace width="0.3em"/><mo>⟺</mo><mspace width="0.3em"/><msub><mi>cr</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><mo>≥</mo><mi>l</mi></mrow></math>
+
+      <h3><span lang="en">About the scenarios</span><span lang="es">Sobre los escenarios</span></h3>
+      <p class="measure" lang="en">The first scenario uses the numbers of the “Ideology clash” example in my paper. The paper gives each agent’s credences conditional on H and on V, but not on both together; here Ana’s credence in S given H ∧ V is 0.70 and Joseph’s is 0.22. Of all the truth tables that agree with these numbers, the scenario uses the most spread-out one (the one with maximum entropy). The other two scenarios were built the same way.</p><p class="measure" lang="es">El primer escenario usa los números del ejemplo “Ideology clash” de mi artículo. El artículo da los grados de creencia de cada agente condicionales a H y a V, pero no a ambas juntas; aquí el grado de creencia de Ana en S dado H ∧ V es 0.70 y el de Joseph, 0.22. De todas las tablas de verdad que concuerdan con esos números, el escenario usa la más repartida (la de máxima entropía). Los otros dos escenarios se construyeron de la misma manera.</p>
+    </section>
+
+    <section class="wrap" id="sources">
+      <h2><span lang="en">Sources</span><span lang="es">Fuentes</span></h2>
+      <ul class="readings refs">
+        <li>Joselu Cabrera Guillermo. “The Bayesian and the Im&shy;mu&shy;nol&shy;o&shy;gist: a controversy over belief update.” <span lang="en">Work in progress.</span><span lang="es">Trabajo en curso.</span></li>
+        <li>Joselu Cabrera Guillermo (2025). “Not changing your mind: a formal model for attention biases.” <span lang="en">Talk at the 3rd RatioLog, State Uni&shy;ver&shy;si&shy;ty of Cam&shy;pi&shy;nas (UNICAMP).</span><span lang="es">Ponencia en el 3er RatioLog, Uni&shy;ver&shy;si&shy;da&shy;de Es&shy;ta&shy;dual de Cam&shy;pi&shy;nas (UNICAMP).</span></li>
+        <li>John G. Kemeny and Paul Oppenheim (1952). “Degree of factual support.” <em>Phi&shy;los&shy;o&shy;phy of Science</em> 19 (4): 307–324.</li>
+        <li>Eric Man&shy;del&shy;baum (2019). “Troubles with Bayes&shy;ian&shy;ism: An introduction to the psychological immune system.” <em>Mind &amp; Language</em> 34 (2): 141–157.</li>
+        <li>Jessie Munton (2026). “All the things I do not know and refuse to learn.” In Tamar Szabó Gendler, John Hawthorne, Julianne Chung and Alex Worsnip (eds.), <em>Oxford Studies in Epistemology</em>, vol. 8, 187–213. Oxford Uni&shy;ver&shy;si&shy;ty Press.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span><span class="who">Joselu Cabrera Guillermo</span><br><span lang="en">De&shy;part&shy;ment of Phi&shy;los&shy;o&shy;phy, Duke Uni&shy;ver&shy;si&shy;ty</span><span lang="es">De&shy;par&shy;ta&shy;men&shy;to de Fi&shy;lo&shy;so&shy;fía, Duke Uni&shy;ver&shy;si&shy;ty</span></span>
+      <span><span lang="en">Historical images are in the public domain and credited to their creators.</span><span lang="es">Las imágenes históricas son de dominio público y se acreditan a sus autores.</span><br>
+        <a href="credits.html"><span lang="en">Image credits</span><span lang="es">Créditos de imágenes</span></a></span>
+      <span>&copy; <span class="year">2026</span><br><a href="https://github.com/Joselu14">GitHub</a></span>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/attention.js"></script>
+</body>
+</html>

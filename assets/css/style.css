@@ -345,6 +345,99 @@ main .readings li { padding-left: 1.4em; text-indent: -1.4em; margin: 0 0 0.3em;
 .split .plate img { max-height: 520px; }
 .hero > *, .two-col > *, .split > *, .area > * { min-width: 0; }
 
+/* ---------- Attention model (attention.html) ---------- */
+.att { --a: 0.65; --l: 0.75; --zone: color-mix(in srgb, var(--tint-indigo) 60%, transparent); padding-top: clamp(16px, 3vw, 32px); }
+:root[data-theme="dark"] .att { --zone: color-mix(in srgb, var(--indigo) 18%, transparent); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .att { --zone: color-mix(in srgb, var(--indigo) 18%, transparent); } }
+.att-label { font-style: italic; color: var(--ink-2); margin: 0 0 6px; text-align: left; }
+.att-controls { display: grid; grid-template-columns: 1fr; gap: 22px 56px; }
+@media (min-width: 860px) { .att-controls { grid-template-columns: 1fr 1fr; } }
+.att-ctl { border-top: 1px solid var(--rule); padding-top: 12px; min-width: 0; }
+.att .filters { margin: 0 0 4px; gap: 0 22px; }
+.att .filters button { text-align: left; }
+.att-note { font-size: 0.95em; color: var(--ink-2); margin: 4px 0 6px; max-width: var(--measure); }
+.att .again { background: none; border: 0; padding: 6px 0; cursor: pointer; color: var(--ink-2); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+@media (hover: hover) and (pointer: fine) { .att .again:hover { color: var(--link-hover); } }
+.att-check { display: flex; gap: 8px; align-items: baseline; margin: 0 0 8px; cursor: pointer; text-align: left; }
+.att-check input { accent-color: var(--carmine); width: 1.05em; height: 1.05em; flex: none; transform: translateY(2px); }
+.att-key { font-size: 0.92em; color: var(--ink-2); margin: 10px 0 0; text-align: left; }
+.att-slider { display: grid; grid-template-columns: 8.5em minmax(0, 1fr) 2.8em; align-items: center; gap: 12px; margin: 4px 0; }
+.att-slider input[type="range"] { width: 100%; margin: 0; min-height: 30px; accent-color: var(--carmine); }
+.att-slider output { font-variant-numeric: lining-nums tabular-nums; text-align: right; }
+
+/* The shared scale: the one moving picture on the page */
+.att-outcome { margin-top: clamp(30px, 4vw, 48px); padding-top: 14px; border-top: 1.5px solid var(--ink); }
+.att-row, .att-axis { display: grid; grid-template-columns: 4.6em minmax(0, 1fr) 6.6em; gap: 14px; align-items: center; }
+.att-row { min-height: 46px; }
+.att-row-name { font: 400 1.25rem / 1 var(--head); }
+.att-row-num { font-variant-numeric: lining-nums tabular-nums; text-align: right; white-space: nowrap; }
+.att-row-num b, .att-cr b { color: var(--carmine); font-weight: 600; }
+.att-track {
+  position: relative; height: 32px; border-left: 1px solid var(--ink-2); border-right: 1px solid var(--ink-2);
+  background: linear-gradient(to right, var(--zone) calc((1 - var(--l)) * 100%), transparent calc((1 - var(--l)) * 100%) calc(var(--l) * 100%), var(--zone) calc(var(--l) * 100%));
+}
+.att-track::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid var(--rule); }
+.att-arrow { position: absolute; top: 50%; height: 0; border-top: 2px solid var(--carmine); transition: left 220ms cubic-bezier(0.23, 1, 0.32, 1), width 220ms cubic-bezier(0.23, 1, 0.32, 1); }
+.mk { position: absolute; top: 50%; width: 13px; height: 13px; border-radius: 50%; transform: translate(-50%, -50%); transition: left 220ms cubic-bezier(0.23, 1, 0.32, 1); }
+.mk.before { border: 1.5px solid var(--ink); background: var(--paper); }
+.mk.after { background: var(--carmine); }
+.mk.all { width: 10px; height: 10px; border-radius: 0; border: 1.5px solid var(--ink-2); background: var(--paper); transform: translate(-50%, -50%) rotate(45deg); }
+.att-axis { margin-top: 2px; font-size: 0.82em; line-height: 1.15; color: var(--ink-2); font-style: italic; align-items: start; }
+.att-zones { display: grid; grid-template-columns: calc((1 - var(--l)) * 100%) minmax(0, 1fr) calc((1 - var(--l)) * 100%); text-align: center; }
+.att-zones > span { overflow: hidden; padding: 0 2px; }
+.att-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-size: 0.9em; color: var(--ink-2); margin: 14px 0 0; }
+.att-li { display: inline-flex; align-items: center; gap: 7px; margin-right: 16px; white-space: nowrap; }
+.att-legend .mk { position: static; display: inline-block; transform: none; flex: none; }
+.att-legend .mk.all { transform: rotate(45deg); }
+.att-verdict { font: 400 1.5rem / 1.25 var(--head); margin: 20px 0 6px; max-width: 32em; text-align: left; -webkit-hyphens: manual; hyphens: manual; }
+.att-all { color: var(--ink-2); max-width: var(--measure); }
+@media (max-width: 620px) {
+  .att-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name num" "track track"; gap: 2px 10px; padding-bottom: 6px; }
+  .att-row-name { grid-area: name; } .att-row-num { grid-area: num; } .att-track { grid-area: track; }
+  .att-axis { grid-template-columns: minmax(0, 1fr); }
+  .att-axis > span:not(.att-zones) { display: none; }
+  .att-how math[display="block"] { font-size: 1em; }
+}
+
+/* The two agents */
+.att-agents { display: grid; grid-template-columns: 1fr; gap: 28px 56px; margin-top: clamp(26px, 4vw, 44px); }
+@media (min-width: 860px) { .att-agents { grid-template-columns: 1fr 1fr; } }
+.att-agent { border-top: 1px solid var(--rule); padding-top: 12px; min-width: 0; }
+.att-agent h3 { margin: 0 0 10px; }
+.att-sal { display: grid; grid-template-columns: 1.4em minmax(0, 1fr) 2.6em; gap: 2px 10px; align-items: center; margin: 0 0 8px; }
+.att-ev { font-weight: 700; color: var(--ink); }
+.att-sal:not(.on) .att-ev { color: var(--faint); text-decoration: line-through; }
+.att-bar { position: relative; height: 10px; background: var(--paper-2); }
+.att-bar > span { position: absolute; left: 0; top: 0; bottom: 0; background: var(--faint); transition: width 220ms cubic-bezier(0.23, 1, 0.32, 1); }
+.att-sal.on .att-bar > span { background: var(--ink); }
+.att-bar::after { content: ""; position: absolute; top: -5px; bottom: -5px; left: calc(var(--a) * 100%); border-left: 2px solid var(--carmine); }
+.att-num { font-variant-numeric: lining-nums tabular-nums; text-align: right; }
+.att-why { grid-column: 2 / 4; font-size: 0.85em; font-style: italic; color: var(--ink-2); text-align: left; }
+.att-says { margin: 12px 0 10px; text-align: left; }
+.att-cr { margin: 0 0 10px; }
+.att-cr > div { display: grid; grid-template-columns: 5.2em minmax(0, 1fr); padding: 5px 0; border-top: 1px solid var(--rule); }
+.att-cr dt { font-style: italic; color: var(--ink-2); }
+.att-cr dd { margin: 0; font-variant-numeric: lining-nums tabular-nums; text-align: left; }
+.att-adjust, .att-tt { border-top: 1px solid var(--rule); padding: 8px 0; }
+.att-adjust summary, .att-tt summary { cursor: pointer; padding: 4px 0; }
+@media (hover: hover) and (pointer: fine) { .att-adjust summary:hover, .att-tt summary:hover { color: var(--link-hover); } }
+.att-group { border: 0; padding: 0; margin: 10px 0 4px; min-width: 0; }
+.att-group legend { font-style: italic; color: var(--ink-2); padding: 0; margin-bottom: 2px; font-size: 0.95em; }
+.att-agent .att-slider { grid-template-columns: 5.9em minmax(0, 1fr) 2.6em; }
+.att-agent .att-slider label { font-variant-numeric: lining-nums; white-space: nowrap; font-size: 0.95em; }
+.att-derived { font-size: 0.9em; color: var(--ink-2); text-align: left; font-variant-numeric: lining-nums; }
+.att-tt-note { font-size: 0.9em; color: var(--ink-2); max-width: 30em; }
+.att-table { border-collapse: collapse; font-variant-numeric: lining-nums tabular-nums; font-size: 0.92em; margin-top: 6px; }
+.att-table th, .att-table td { padding: 2px 9px; text-align: center; }
+.att-table th { font-weight: 400; font-style: italic; color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+.att-table td:nth-child(n+5) { text-align: right; }
+.att-table tr.out td { color: var(--faint); text-decoration: line-through; }
+
+/* How the model works */
+.att-how h3 { margin: 1.6em 0 0.4em; }
+.att-how math { font-family: "STIX Two Math", "Cambria Math", math; }
+.att-how math[display="block"] { display: block; margin: 12px 0 18px; font-size: 1.12em; overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 4px 0; }
+
 /* ---------- 9. Visual work: the darkroom ---------- */
 body.darkroom {
   --paper: #1d1512; --paper-2: #2a201b; --ink: #efe5d9; --ink-2: #b6a799; --faint: #7d6d62;

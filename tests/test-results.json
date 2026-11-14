@@ -1,11 +1,12 @@
 {
-  "date": "2026-11-14T15:28:41.576Z",
+  "date": "2026-11-14T16:18:31.576Z",
   "checks": [
-    "144 page/width/language/theme combinations: no horizontal overflow",
+    "160 page/width/language/theme combinations: no horizontal overflow",
     "All local pages and assets exist",
     "No requests to other sites (fonts are self-hosted)",
     "Triangle: path, C(n, h), rule of succession, Spanish status text, 12-row cap, start over",
     "Toolkit: six entries, \"More about this project\" opens, triangle link, old address redirects, no slides",
+    "Attention model: linked from Research; the paper’s numbers (saliences 0.80/1.00, credences 0.80→0.95 and 0.15→0.03); enthusiastic and Lockean scenarios; sliders keep the tables coherent; Spanish verdicts",
     "Reading group: linked from the toolkit, English and Spanish titles, 10 weeks, 21 readings, PDFs and LaTeX templates present; template is noindex and outside the sitemap",
     "404: random plate, redraw gives a different plate, credit link is absolute",
     "Gallery: poster filter from URL, viewer arrows, keys, drag, click outside to close",
